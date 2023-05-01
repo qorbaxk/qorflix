@@ -8,7 +8,7 @@ const Navigation = () => {
         <div className='flex flex-row items-center gap-10'>
           <Link to="/">
             <h1>
-              <img src="/src/assets/Logo.svg" alt="" />
+              <img src="/src/assets/Logo.svg" alt="넷플릭스 메인 로고" />
             </h1>
           </Link>
           <Link to="/movies">전체 영화</Link>
