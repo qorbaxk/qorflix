@@ -1,9 +1,9 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
-import Search from './pages/Search'
-import Detail from './pages/Detail'
-import Navigation from './components/Navigation/Navigation'
+import Home from '../../pages/Home'
+import Movies from '../../pages/Movies'
+import Navigation from '../../components/Navigation/Navigation'
+import Detail from '../../pages/Detail'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<Detail />} />
       </Routes>
     </>
