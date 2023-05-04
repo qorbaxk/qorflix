@@ -13,6 +13,14 @@
     @apply before:absolute before:left-0 before:w-full before:h-full before:min-h-[600px] before:content-[''] before:bg-gradient-to-t before:from-black before:to-transparent;
   }
 
+  .dotAfter {
+    @apply after:content-['·'] after:ml-2
+  }
+  .dotAfter:last-child::after{
+    content: '';
+    margin: 0;
+  }
+
   .a11y-hidden {
     background-color: red;
     position: absolute;

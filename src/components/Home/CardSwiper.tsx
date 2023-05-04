@@ -5,6 +5,8 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 
 import { EffectCoverflow, Pagination } from 'swiper'
+import { useSelector } from 'react-redux'
+import { RootState } from './../../redux/store'
 
 type SwiperMovieProps = {
   adult: boolean
@@ -31,6 +33,7 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
   const current = `${now.getFullYear()}-${
     now.getMonth() + 1 > 9 ? now.getMonth() + 1 : `0${now.getMonth() + 1}`
   }-${now.getDate() > 9 ? now.getDate() : `0${now.getDate()}`}`
+  const genre = useSelector((movieState: RootState) => movieState.mv.genreList)
 
   return (
     <>
@@ -98,6 +101,19 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
                     </span>
                   </p>
                 )}
+                <div className="flex flex-row">
+                  {item.genre_ids?.map((id, idx) =>
+                    idx < 5 ? (
+                      <label
+                        key={id}
+                        className="flex flex-row flex-nowrap text-xs font-bold p-1 w-fit dotAfter"
+                      >
+                        {genre.find(item => item.id === id)?.name}
+                      </label>
+                    ) : null,
+                  )}
+                </div>
+
                 <span
                   className={`text-xs font-bold p-1 rounded-lg w-fit ${
                     item.adult ? 'bg-red-700' : 'bg-green-700'
