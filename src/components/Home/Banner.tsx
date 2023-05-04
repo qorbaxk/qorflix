@@ -7,9 +7,6 @@ const Banner = () => {
     (movieState: RootState) => movieState.mv.popularMovies,
   )
 
-  console.log(movie)
-  console.log(movie[0])
-
   return (
     <>
       <div
@@ -25,13 +22,13 @@ const Banner = () => {
           objectFit: 'contain',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          display:'flex',
-          alignItems:'center'
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-40">
-          <h1 className='block w-full text-5xl'>{movie[0].title}</h1>
-          <p className='text-justify'>{movie[0].overview}</p>
+          <h1 className="block w-full text-5xl">{movie[0].title}</h1>
+          <p className="text-justify">{movie[0].overview}</p>
         </div>
       </div>
     </>
