@@ -8,12 +8,16 @@ const Popular = () => {
     (movieState: RootState) => movieState.mv.popularMovies,
   )
 
-  console.log(movie)
+  const voteSortedMovies = [...movie].sort(
+    (a, b) => b.vote_count - a.vote_count,
+  )
+
+  console.log('인기', voteSortedMovies)
 
   return (
-    <div className="mt-24 px-32">
-      <h2 className="text-3xl">현재 인기 영화</h2>
-      <CardSwiper movies={movie} />
+    <div className="px-32">
+      <h2 className="text-3xl">인기 영화</h2>
+      <CardSwiper movies={voteSortedMovies} />
     </div>
   )
 }
