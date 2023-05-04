@@ -19,6 +19,7 @@ export interface oneMovieProps {
 export interface MovieState {
   popularMovies: oneMovieProps[]
   upComingMovies: oneMovieProps[]
+  nowPlayingMovies: oneMovieProps[]
 }
 
 const initialState: MovieState = {
@@ -58,6 +59,24 @@ const initialState: MovieState = {
       vote_count: 0,
     },
   ],
+  nowPlayingMovies: [
+    {
+      adult: false,
+      backdrop_path: '',
+      genre_ids: [0],
+      id: 0,
+      original_language: '',
+      original_title: '',
+      overview: '',
+      popularity: 0,
+      poster_path: '',
+      release_date: '',
+      title: '',
+      video: false,
+      vote_average: 0,
+      vote_count: 0,
+    },
+  ],
 }
 
 export const movieSlice = createSlice({
@@ -70,8 +89,12 @@ export const movieSlice = createSlice({
     getComingMovies: (state, action) => {
       state.upComingMovies = action.payload.upComingMovies
     },
+    getPlayingMovies: (state, action) => {
+      state.nowPlayingMovies = action.payload.nowPlayingMovies
+    },
   },
 })
 
-export const { getMainMovies, getComingMovies } = movieSlice.actions
+export const { getMainMovies, getComingMovies, getPlayingMovies } =
+  movieSlice.actions
 export default movieSlice.reducer
