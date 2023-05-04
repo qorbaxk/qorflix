@@ -28,7 +28,7 @@ const Banner = () => {
         }}
       >
         <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-40">
-          <p className="block w-full text-5xl">{movie[0].title}</p>
+          <p className="block w-full text-5xl font-bold">{movie[0].title}</p>
           <p className="text-justify">{movie[0].overview}</p>
         </div>
       </div>
