@@ -8,4 +8,8 @@
   .baseColor {
     @apply bg-black text-white;
   }
+
+  .bannerFilm {
+    @apply before:absolute before:left-0 before:w-full before:h-full before:min-h-[600px] before:content-[''] before:bg-gradient-to-t before:from-black before:to-transparent;
+  }
 }
