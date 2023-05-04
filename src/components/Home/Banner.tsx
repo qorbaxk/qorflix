@@ -9,6 +9,7 @@ const Banner = () => {
 
   return (
     <>
+      <h2 className="a11y-hidden">메인 배너</h2>
       <div
         className="bannerFilm"
         style={{
@@ -27,7 +28,7 @@ const Banner = () => {
         }}
       >
         <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-40">
-          <h1 className="block w-full text-5xl">{movie[0].title}</h1>
+          <p className="block w-full text-5xl">{movie[0].title}</p>
           <p className="text-justify">{movie[0].overview}</p>
         </div>
       </div>
