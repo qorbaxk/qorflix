@@ -3,6 +3,7 @@ import api from '../redux/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import {
+  getGenreList,
   getMainMovies,
   getComingMovies,
   getPlayingMovies,
@@ -30,11 +31,23 @@ const Home = () => {
     const nowPlayingMovieApi = api.get(
       `/movie/now_playing?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`,
     )
-    let [popularMovies, upComingMovies, nowPlayingMovies] = await Promise.all([
-      popularMovieApi,
-      upComingMovieApi,
-      nowPlayingMovieApi,
-    ])
+    const genreApi = api.get(
+      `/genre/movie/list?api_key=${API_KEY}&language=ko-KR`,
+    )
+
+    let [popularMovies, upComingMovies, nowPlayingMovies, genreList] =
+      await Promise.all([
+        popularMovieApi,
+        upComingMovieApi,
+        nowPlayingMovieApi,
+        genreApi,
+      ])
+
+    dispatch(
+      getGenreList({
+        genreList: genreList.data.genres,
+      }),
+    )
 
     dispatch(
       getMainMovies({
