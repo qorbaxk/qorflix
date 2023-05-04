@@ -3,7 +3,7 @@ import CardSwiper from './CardSwiper'
 import { useSelector } from 'react-redux'
 import { RootState } from './../../redux/store'
 
-const NowPlaying = () => {
+const NowPlaying: React.FC = () => {
   const movie = useSelector(
     (movieState: RootState) => movieState.mv.nowPlayingMovies,
   )
@@ -11,8 +11,6 @@ const NowPlaying = () => {
   const rateSortedMovies = [...movie].sort(
     (a, b) => b.vote_average - a.vote_average,
   )
-
-  console.log('나우', rateSortedMovies)
 
   return (
     <div className="px-32">

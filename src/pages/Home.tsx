@@ -15,7 +15,7 @@ import Upcoming from '../components/Home/Upcoming'
 import NowPlaying from '../components/Home/NowPlaying'
 import ClipLoader from 'react-spinners/ClipLoader'
 
-const Home = () => {
+const Home: React.FC = () => {
   const loading = useSelector(
     (loadingState: RootState) => loadingState.ld.loading,
   )
@@ -73,7 +73,13 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center bg-black min-h-screen">
+      <div
+        className="flex justify-center items-center bg-black min-h-screen"
+        role="alert"
+        aria-busy="true"
+        aria-live="polite"
+        aria-label="로딩중"
+      >
         <ClipLoader color="red" loading={loading} size={150} />
       </div>
     )

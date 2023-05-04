@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from './../../redux/store'
 
-const Banner = () => {
+const Banner: React.FC = () => {
   const movie = useSelector(
     (movieState: RootState) => movieState.mv.popularMovies,
   )
@@ -28,8 +28,20 @@ const Banner = () => {
         }}
       >
         <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-40">
-          <p className="block w-full text-5xl font-bold">{movie[0].title}</p>
-          <p className="text-justify">{movie[0].overview}</p>
+          <p
+            className="block w-full text-5xl font-bold"
+            role="text"
+            aria-label="오늘의 영화 제목"
+          >
+            {movie[0].title}
+          </p>
+          <p
+            className="text-justify"
+            role="text"
+            aria-label="오늘의 영화 줄거리 요약"
+          >
+            {movie[0].overview}
+          </p>
         </div>
       </div>
     </div>

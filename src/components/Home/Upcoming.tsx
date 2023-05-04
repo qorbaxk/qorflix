@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from './../../redux/store'
 import CardSwiper from './CardSwiper'
 
-const Upcoming = () => {
+const Upcoming: React.FC = () => {
   const movie = useSelector(
     (movieState: RootState) => movieState.mv.upComingMovies,
   )
@@ -13,8 +13,6 @@ const Upcoming = () => {
     if (a.release_date < b.release_date) return -1
     return 0
   })
-
-  console.log('예정', dateSortedMovies)
 
   return (
     <div className="px-32">

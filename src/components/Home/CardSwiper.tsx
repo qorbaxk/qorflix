@@ -107,6 +107,7 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
                       <label
                         key={id}
                         className="flex flex-row flex-nowrap text-xs font-bold p-1 w-fit dotAfter"
+                        aria-label="장르"
                       >
                         {genre.find(item => item.id === id)?.name}
                       </label>
@@ -118,6 +119,8 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
                   className={`text-xs font-bold p-1 rounded-lg w-fit ${
                     item.adult ? 'bg-red-700' : 'bg-green-700'
                   }`}
+                  role="text"
+                  aria-label="관람등급"
                 >
                   {item.adult ? '청소년 관람불가' : '전체관람가'}
                 </span>
