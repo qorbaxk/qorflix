@@ -8,7 +8,7 @@ const Banner = () => {
   )
 
   return (
-    <>
+    <div className="mb-24">
       <h2 className="a11y-hidden">메인 배너</h2>
       <div
         className="bannerFilm"
@@ -32,7 +32,7 @@ const Banner = () => {
           <p className="text-justify">{movie[0].overview}</p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
