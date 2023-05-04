@@ -8,16 +8,18 @@ const Upcoming = () => {
     (movieState: RootState) => movieState.mv.upComingMovies,
   )
 
-  const sortedmovies = [...movie].sort((a, b) => {
+  const dateSortedMovies = [...movie].sort((a, b) => {
     if (a.release_date > b.release_date) return 1
     if (a.release_date < b.release_date) return -1
     return 0
   })
 
+  console.log('예정', dateSortedMovies)
+
   return (
-    <div className="mt-24 px-32">
+    <div className="px-32">
       <h2 className="text-3xl">상영 예정 영화</h2>
-      <CardSwiper movies={sortedmovies} />
+      <CardSwiper movies={dateSortedMovies} />
     </div>
   )
 }
