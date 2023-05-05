@@ -66,7 +66,7 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
           paddingBottom: '50px',
         }}
       >
-        {movies?.map(item => (
+        {movies?.map((item, idx) => (
           <SwiperSlide
             style={{
               backgroundPosition: 'center',
@@ -136,6 +136,9 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
                 </span>
               </figcaption>
             </figure>
+            <label aria-label="순위" className="absolute bottom-0 right-0 text-gray-400 text-4xl font-black">
+              {idx - 1 <= 0 ? movies.length + (idx - 1) : idx - 1}
+            </label>
           </SwiperSlide>
         ))}
       </Swiper>
