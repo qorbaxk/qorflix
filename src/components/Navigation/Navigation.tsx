@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Navigation: React.FC = () => {
   return (
     <>
-      <nav className="baseColor flex flex-row items-center justify-between p-4">
+      <nav className="baseColor flex flex-row items-center justify-between py-4 px-32">
         <div className="flex flex-row items-center gap-10">
           <Link to="/" aria-label="메인 홈 바로가기">
             <h1>
