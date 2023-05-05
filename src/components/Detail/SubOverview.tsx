@@ -21,7 +21,7 @@ const SubOverview: React.FC = () => {
       <div>
         <p className="text-neutral-400 mb-3">출연진</p>
         <CastCard />
-        <p className="text-neutral-400 mb-3">감독</p>
+        <p className="text-neutral-400 mt-8 mb-3">감독</p>
         <DirectorCard director={director as crewProps} />
       </div>
     </>
