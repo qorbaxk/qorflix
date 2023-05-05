@@ -20,7 +20,7 @@ const OverView: React.FC = () => {
         <figcaption className="grow flex flex-col justify-start gap-8 relative">
           <div className="flex flex-col items-start justify-start gap-4 w-[80%]">
             <p className="text-base italic">{detail.tagline}</p>
-            <p className="text-5xl font-bold">{detail.title}</p>
+            <p className="text-5xl font-bold text-justify">{detail.title}</p>
 
             <div className="absolute top-10 right-0 flex flex-row items-center gap-2">
               <p className="text-4xl">{detail.vote_average.toFixed(1)}</p>
