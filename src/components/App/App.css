@@ -8,4 +8,38 @@
   .baseColor {
     @apply bg-black text-white;
   }
+
+  .bannerFilm {
+    @apply before:absolute before:left-0 before:w-full before:h-full before:min-h-[600px] before:content-[''] before:bg-gradient-to-t before:from-black before:to-transparent;
+  }
+
+  .dotAfter {
+    @apply after:content-['·'] after:ml-2
+  }
+  .dotAfter:last-child::after{
+    content: '';
+    margin: 0;
+  }
+
+  .a11y-hidden {
+    background-color: red;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+
+  :root {
+    --swiper-pagination-color: #e50914;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-width: 8px;
+    --swiper-pagination-bullet-height: 8px;
+    --swiper-pagination-bullet-inactive-color: #999999;
+    --swiper-pagination-bullet-inactive-opacity: 0.2;
+    --swiper-pagination-bullet-opacity: 1;
+    --swiper-pagination-bullet-horizontal-gap: 4px;
+    --swiper-pagination-bullet-vertical-gap: 6px;
+  }
 }
