@@ -23,6 +23,9 @@
     content: '';
     margin: 0;
   }
+  .lineAfter {
+    @apply after:content-['｜'] after:mx-2
+  }
 
   .a11y-hidden {
     background-color: red;
