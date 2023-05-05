@@ -8,7 +8,7 @@
   .baseColor {
     @apply bg-black text-white;
   }
-  .baseContainer{
+  .baseContainer {
     @apply min-h-screen h-full;
   }
 
@@ -17,14 +17,24 @@
   }
 
   .dotAfter {
-    @apply after:content-['·'] after:ml-2
+    @apply after:content-['·'] after:ml-2;
   }
-  .dotAfter:last-child::after{
+  .dotAfter:last-child::after {
     content: '';
     margin: 0;
   }
   .lineAfter {
-    @apply after:content-['｜'] after:mx-2
+    @apply after:content-['｜'] after:mx-2;
+  }
+
+  .active {
+    @apply text-white font-bold;
+  }
+  .unActive {
+    @apply text-neutral-400 font-light;
+  }
+  .underBar {
+    @apply after:content-[''] after:block after:h-1 after:bg-primary-100 after:w-full after:absolute after:bottom-[-2] after:left-0;
   }
 
   .a11y-hidden {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import Anchor from './Anchor'
 
 const OverView: React.FC = () => {
   const detail = useSelector(
@@ -18,7 +19,7 @@ const OverView: React.FC = () => {
           alt={`${detail.title} 포스터`}
           width={500}
         />
-        <figcaption className="grow flex flex-row items-start gap-8 relative">
+        <figcaption className="grow flex flex-col justify-start gap-8 relative">
           <div className="flex flex-col items-start justify-start gap-4 w-[80%]">
             <p className="text-base italic">{detail.tagline}</p>
             <p className="text-5xl font-bold">{detail.title}</p>
@@ -40,6 +41,9 @@ const OverView: React.FC = () => {
                 <td className="lineAfter">{`${Math.floor(
                   detail.runtime / 60,
                 )}시간 ${detail.runtime % 60}분`}</td>
+                <td className="lineAfter">
+                  {detail.adult ? '청소년 관람불가' : '전체관람가'}
+                </td>
                 <td className="flex flex-row">
                   {detail.genres?.map(item => (
                     <label
@@ -54,6 +58,7 @@ const OverView: React.FC = () => {
               </tr>
             </table>
           </div>
+          <Anchor/>
         </figcaption>
       </figure>
     </div>
