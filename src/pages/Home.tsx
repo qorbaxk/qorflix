@@ -71,6 +71,7 @@ const Home: React.FC = () => {
   }
   useEffect(() => {
     getMovies()
+    window.scrollTo(0, 0)
   }, [])
 
   if (loading) {
@@ -87,11 +88,13 @@ const Home: React.FC = () => {
     )
   }
   return (
-    <div className="baseColor baseContainer">
-      <Banner />
-      <NowPlaying />
-      <Popular />
-      <Upcoming />
+    <div className='w-full bg-black'>
+      <div className="baseColor baseContainer">
+        <Banner />
+        <NowPlaying />
+        <Popular />
+        <Upcoming />
+      </div>
     </div>
   )
 }
