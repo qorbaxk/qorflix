@@ -3,7 +3,7 @@ import api from '../redux/api'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getSelectedMovie } from '../redux/slice/detailSlice'
-
+import { getCredits } from '../redux/slice/creditSlice'
 import OverView from '../components/Detail/OverView'
 import { trueLoading, falseLoading } from '../redux/slice/loadingSlice'
 
@@ -16,10 +16,14 @@ const Detail: React.FC = () => {
     const detailMovieApi = api.get(
       `/movie/${id}?api_key=${API_KEY}&language=ko-KR`,
     )
+    const creditMovieApi = api.get(
+      `/movie/${id}/credits?api_key=${API_KEY}&language=ko-KR`,
+    )
 
-    let [detailMovie] = await Promise.all([detailMovieApi])
+    let [detailMovie, creditMovie] = await Promise.all([detailMovieApi, creditMovieApi])
 
     dispatch(getSelectedMovie(detailMovie.data))
+    dispatch(getCredits(creditMovie.data))
     dispatch(falseLoading())
   }
 
