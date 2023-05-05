@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { genreProps } from './movieSlice'
+import { genreProps, oneMovieProps } from './movieSlice'
 
 export interface companiesProps {
   id: number
@@ -56,6 +56,7 @@ export interface detailMovieProps {
   }
   trailerMovieInfo: trailerProps[]
   reviewMovieInfo: reviewProps[]
+  recommendMovieInfo: oneMovieProps[]
 }
 
 const initialState: detailMovieProps = {
@@ -113,6 +114,24 @@ const initialState: detailMovieProps = {
       url: '',
     },
   ],
+  recommendMovieInfo: [
+    {
+      adult: false,
+      backdrop_path: '',
+      genre_ids: [0],
+      id: 0,
+      original_language: '',
+      original_title: '',
+      overview: '',
+      popularity: 0,
+      poster_path: '',
+      release_date: '',
+      title: '',
+      video: false,
+      vote_average: 0,
+      vote_count: 0,
+    },
+  ],
 }
 
 export const detailSlice = createSlice({
@@ -128,9 +147,16 @@ export const detailSlice = createSlice({
     getReviewsMovie: (state, action) => {
       state.reviewMovieInfo = action.payload
     },
+    getRecommendMovie: (state, action) => {
+      state.recommendMovieInfo = action.payload
+    },
   },
 })
 
-export const { getSelectedMovie, getTrailerMovie, getReviewsMovie } =
-  detailSlice.actions
+export const {
+  getSelectedMovie,
+  getTrailerMovie,
+  getReviewsMovie,
+  getRecommendMovie,
+} = detailSlice.actions
 export default detailSlice.reducer

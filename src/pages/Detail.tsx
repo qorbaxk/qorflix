@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../redux/store'
 import {
+  getRecommendMovie,
   getReviewsMovie,
   getSelectedMovie,
   getTrailerMovie,
@@ -35,14 +36,24 @@ const Detail: React.FC = () => {
     const reviewApi = api.get(
       `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
     )
+    const recommendApi = api.get(
+      `/movie/${id}/recommendations?api_key=${API_KEY}&language=ko-KR&page=1`,
+    )
 
-    let [detailMovie, creditMovie, trailerMovie, reviewsMovie] =
-      await Promise.all([detailMovieApi, creditMovieApi, trailerApi, reviewApi])
+    let [detailMovie, creditMovie, trailerMovie, reviewsMovie, recommendMovie] =
+      await Promise.all([
+        detailMovieApi,
+        creditMovieApi,
+        trailerApi,
+        reviewApi,
+        recommendApi,
+      ])
 
     dispatch(getSelectedMovie(detailMovie.data))
     dispatch(getCredits(creditMovie.data))
     dispatch(getTrailerMovie(trailerMovie.data.results))
     dispatch(getReviewsMovie(reviewsMovie.data.results))
+    dispatch(getRecommendMovie(recommendMovie.data.results))
     dispatch(falseLoading())
   }
 
