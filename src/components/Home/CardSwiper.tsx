@@ -6,6 +6,7 @@ import 'swiper/css/pagination'
 
 import { EffectCoverflow, Pagination } from 'swiper'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { RootState } from './../../redux/store'
 
 type SwiperMovieProps = {
@@ -34,6 +35,11 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
     now.getMonth() + 1 > 9 ? now.getMonth() + 1 : `0${now.getMonth() + 1}`
   }-${now.getDate() > 9 ? now.getDate() : `0${now.getDate()}`}`
   const genre = useSelector((movieState: RootState) => movieState.mv.genreList)
+  const navigate = useNavigate()
+
+  const gotoDetail = (id: number) => {
+    navigate(`/movies/${id}`)
+  }
 
   return (
     <>
@@ -49,6 +55,9 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
           modifier: 1,
           slideShadows: true,
         }}
+        initialSlide={2}
+        centeredSlidesBounds={true}
+        loop={true}
         pagination={true}
         modules={[EffectCoverflow, Pagination]}
         style={{
@@ -66,6 +75,7 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
               height: '300px',
             }}
             key={item.id}
+            onClick={() => gotoDetail(item.id)}
           >
             <figure>
               <img
