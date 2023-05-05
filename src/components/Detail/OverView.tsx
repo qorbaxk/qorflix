@@ -8,8 +8,6 @@ const OverView: React.FC = () => {
     (detailState: RootState) => detailState.dt.selectedMovieInfo,
   )
 
-  console.log(detail)
-
   return (
     <div className="px-32 mx-auto pt-8">
       <h2 className="a11y-hidden">선택한 영화</h2>
@@ -58,7 +56,7 @@ const OverView: React.FC = () => {
               </tr>
             </table>
           </div>
-          <Anchor/>
+          <Anchor />
         </figcaption>
       </figure>
     </div>
