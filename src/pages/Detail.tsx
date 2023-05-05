@@ -3,7 +3,11 @@ import api from '../redux/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../redux/store'
-import { getSelectedMovie, getTrailerMovie } from '../redux/slice/detailSlice'
+import {
+  getReviewsMovie,
+  getSelectedMovie,
+  getTrailerMovie,
+} from '../redux/slice/detailSlice'
 import { getCredits } from '../redux/slice/creditSlice'
 import OverView from '../components/Detail/OverView'
 import { trueLoading, falseLoading } from '../redux/slice/loadingSlice'
@@ -28,16 +32,17 @@ const Detail: React.FC = () => {
     const trailerApi = api.get(
       `/movie/${id}/videos?api_key=${API_KEY}&language=ko-KR`,
     )
+    const reviewApi = api.get(
+      `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
+    )
 
-    let [detailMovie, creditMovie, trailerMovie] = await Promise.all([
-      detailMovieApi,
-      creditMovieApi,
-      trailerApi,
-    ])
+    let [detailMovie, creditMovie, trailerMovie, reviewsMovie] =
+      await Promise.all([detailMovieApi, creditMovieApi, trailerApi, reviewApi])
 
     dispatch(getSelectedMovie(detailMovie.data))
     dispatch(getCredits(creditMovie.data))
     dispatch(getTrailerMovie(trailerMovie.data.results))
+    dispatch(getReviewsMovie(reviewsMovie.data.results))
     dispatch(falseLoading())
   }
 
@@ -61,7 +66,7 @@ const Detail: React.FC = () => {
     )
   }
   return (
-    <div className='w-full bg-black'>
+    <div className="w-full bg-black">
       <div className="baseColor baseContainer">
         <OverView />
       </div>

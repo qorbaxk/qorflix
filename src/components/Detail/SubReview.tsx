@@ -1,8 +1,11 @@
 import React from 'react'
+import ReviewCard from './ReviewCard'
 
-const SubReview = () => {
+const SubReview: React.FC = () => {
   return (
-    <div>SubReview</div>
+    <>
+      <ReviewCard />
+    </>
   )
 }
 

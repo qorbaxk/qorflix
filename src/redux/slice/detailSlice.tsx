@@ -17,6 +17,21 @@ export interface trailerProps {
   type: string
 }
 
+export interface authorProps {
+  name: string
+  username: string
+  avatar_path: string
+  rating: number
+}
+export interface reviewProps {
+  author: string
+  author_details: authorProps
+  content: string
+  created_at: string
+  id: string
+  updated_at: string
+  url: string
+}
 export interface detailMovieProps {
   selectedMovieInfo: {
     adult: boolean
@@ -40,6 +55,7 @@ export interface detailMovieProps {
     vote_count: number
   }
   trailerMovieInfo: trailerProps[]
+  reviewMovieInfo: reviewProps[]
 }
 
 const initialState: detailMovieProps = {
@@ -81,6 +97,22 @@ const initialState: detailMovieProps = {
       type: '',
     },
   ],
+  reviewMovieInfo: [
+    {
+      author: '',
+      author_details: {
+        name: '',
+        username: '',
+        avatar_path: '',
+        rating: 0,
+      },
+      content: '',
+      created_at: '',
+      id: '',
+      updated_at: '',
+      url: '',
+    },
+  ],
 }
 
 export const detailSlice = createSlice({
@@ -93,8 +125,12 @@ export const detailSlice = createSlice({
     getTrailerMovie: (state, action) => {
       state.trailerMovieInfo = action.payload
     },
+    getReviewsMovie: (state, action) => {
+      state.reviewMovieInfo = action.payload
+    },
   },
 })
 
-export const { getSelectedMovie, getTrailerMovie } = detailSlice.actions
+export const { getSelectedMovie, getTrailerMovie, getReviewsMovie } =
+  detailSlice.actions
 export default detailSlice.reducer
