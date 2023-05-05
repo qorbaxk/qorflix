@@ -1,26 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { trailerProps } from '../../redux/slice/detailSlice'
 import YouTube from 'react-youtube'
 
-const TrailerCard = () => {
-  let trailer = useSelector(
-    (detailState: RootState) => detailState.dt.trailerMovieInfo,
-  )
+type trailerCardProps = {
+  trailer: trailerProps[]
+}
 
-  trailer = trailer.filter(v => v.type === 'Trailer')
-
+const TrailerCard: React.FC<trailerCardProps> = ({ trailer }) => {
   return (
     <div>
       {trailer &&
         trailer.map(item => (
           <YouTube
-            className="mb-8"
             key={item.id}
+            className="mb-8"
             videoId={item.key}
             opts={{
-              width: '100%',
-              height: '500',
+              width: '700',
+              height: '400',
               playerVars: {
                 autoplay: 0,
                 rel: 0,
