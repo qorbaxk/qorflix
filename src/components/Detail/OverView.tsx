@@ -28,32 +28,34 @@ const OverView: React.FC = () => {
             </div>
 
             <table>
-              <tr className="text-neutral-400 text-sm flex flex-row flex-nowrap items-center">
-                <td className="lineAfter">{`${detail.release_date.substring(
-                  2,
-                  4,
-                )}년 ${detail.release_date.substring(
-                  5,
-                  7,
-                )}월 ${detail.release_date.substring(8, 10)}일`}</td>
-                <td className="lineAfter">{`${Math.floor(
-                  detail.runtime / 60,
-                )}시간 ${detail.runtime % 60}분`}</td>
-                <td className="lineAfter">
-                  {detail.adult ? '청소년 관람불가' : '전체관람가'}
-                </td>
-                <td className="flex flex-row">
-                  {detail.genres?.map(item => (
-                    <label
-                      key={item.id}
-                      className="mr-3 w-fit"
-                      aria-label="장르"
-                    >
-                      {item.name}
-                    </label>
-                  ))}
-                </td>
-              </tr>
+              <tbody>
+                <tr className="text-neutral-400 text-sm flex flex-row flex-nowrap items-center">
+                  <td className="lineAfter">{`${detail.release_date.substring(
+                    2,
+                    4,
+                  )}년 ${detail.release_date.substring(
+                    5,
+                    7,
+                  )}월 ${detail.release_date.substring(8, 10)}일`}</td>
+                  <td className="lineAfter">{`${Math.floor(
+                    detail.runtime / 60,
+                  )}시간 ${detail.runtime % 60}분`}</td>
+                  <td className="lineAfter">
+                    {detail.adult ? '청소년 관람불가' : '전체관람가'}
+                  </td>
+                  <td className="flex flex-row">
+                    {detail.genres?.map(item => (
+                      <label
+                        key={item.id}
+                        className="mr-3 w-fit"
+                        aria-label="장르"
+                      >
+                        {item.name}
+                      </label>
+                    ))}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <Anchor />
