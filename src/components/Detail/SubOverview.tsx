@@ -18,7 +18,7 @@ const SubOverview: React.FC = () => {
   return (
     <>
       <p className="text-justify">{detail.overview}</p>
-      <div>
+      <div className='mb-6'>
         <p className="text-neutral-400 mb-3">출연진</p>
         <CastCard />
         <p className="text-neutral-400 mt-8 mb-3">감독</p>
