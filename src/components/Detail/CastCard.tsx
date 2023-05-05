@@ -10,7 +10,7 @@ const CastCard: React.FC = () => {
   const mainCastList = credit.cast.slice(0, 6)
 
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex flex-row flex-wrap gap-3 w-full">
       {mainCastList.map(v => (
         <figure key={v.id}>
           {v?.profile_path ? (
