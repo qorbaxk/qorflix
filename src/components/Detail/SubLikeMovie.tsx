@@ -14,9 +14,11 @@ const SubLikeMovie: React.FC = () => {
     .splice(0, 10)
 
   return (
-    <div className="grid grid-cols-2 auto-rows-min gap-4 mb-6">
+    <div className="grid grid-cols-2 auto-rows-min gap-4 mb-12">
       {recommend.map(item => (
-        <CardInner key={item.id} item={item} />
+        <div key={item.id} className="hover:scale-125 transition-all">
+          <CardInner item={item} />
+        </div>
       ))}
     </div>
   )
