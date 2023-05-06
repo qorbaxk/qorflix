@@ -22,7 +22,7 @@ const CardInner: React.FC<CardInnerProps> = ({ item }) => {
   }
 
   return (
-    <div onClick={gotoDetail} className='cursor-pointer'>
+    <div onClick={gotoDetail} className="rounded-xl bg-black cursor-pointer">
       <figure>
         <img
           style={{
@@ -38,8 +38,9 @@ const CardInner: React.FC<CardInnerProps> = ({ item }) => {
               ? `https://image.tmdb.org/t/p/original//${item.backdrop_path}`
               : `https://image.tmdb.org/t/p/original//${item.poster_path}`
           }
+          className="rounded-t-xl"
         />
-        <figcaption className="flex flex-col gap-1 justify-center">
+        <figcaption className="flex flex-col gap-1 justify-center px-2 pb-4">
           <h3 className="a11y-hidden">영화 제목</h3>
           <p className="text-lg font-bold">{item.title}</p>
           {current < item.release_date ? (
@@ -53,7 +54,7 @@ const CardInner: React.FC<CardInnerProps> = ({ item }) => {
             <p className="flex flex-row gap-1">
               <span aria-hidden>⭐</span>
               <span role="text" aria-label="별점">
-                {item.vote_average}
+                {item.vote_average.toFixed(1)}
               </span>
             </p>
           )}
