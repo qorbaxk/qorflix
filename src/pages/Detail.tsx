@@ -13,6 +13,7 @@ import { getCredits } from '../redux/slice/creditSlice'
 import OverView from '../components/Detail/OverView'
 import { trueLoading, falseLoading } from '../redux/slice/loadingSlice'
 import ClipLoader from 'react-spinners/ClipLoader'
+import { getGenreList } from '../redux/slice/movieSlice'
 
 const Detail: React.FC = () => {
   const { id } = useParams()
@@ -39,14 +40,18 @@ const Detail: React.FC = () => {
     const recommendApi = api.get(
       `/movie/${id}/recommendations?api_key=${API_KEY}&language=ko-KR&page=1`,
     )
+    const genreApi = api.get(
+      `/genre/movie/list?api_key=${API_KEY}&language=ko-KR`,
+    )
 
-    let [detailMovie, creditMovie, trailerMovie, reviewsMovie, recommendMovie] =
+    let [detailMovie, creditMovie, trailerMovie, reviewsMovie, recommendMovie,genreList] =
       await Promise.all([
         detailMovieApi,
         creditMovieApi,
         trailerApi,
         reviewApi,
         recommendApi,
+        genreApi
       ])
 
     dispatch(getSelectedMovie(detailMovie.data))
@@ -54,6 +59,11 @@ const Detail: React.FC = () => {
     dispatch(getTrailerMovie(trailerMovie.data.results))
     dispatch(getReviewsMovie(reviewsMovie.data.results))
     dispatch(getRecommendMovie(recommendMovie.data.results))
+    dispatch(
+      getGenreList({
+        genreList: genreList.data.genres,
+      }),
+    )
     dispatch(falseLoading())
   }
 
@@ -61,7 +71,7 @@ const Detail: React.FC = () => {
     dispatch(trueLoading())
     getDetails()
     window.scrollTo(0, 0)
-  }, [])
+  }, [id])
 
   if (loading) {
     return (
