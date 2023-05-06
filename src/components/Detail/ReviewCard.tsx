@@ -12,10 +12,8 @@ const ReviewCard: React.FC = () => {
   moment.locale('ko')
   const recentReview = [...reviews].reverse()
 
-  console.log(recentReview)
-
   return (
-    <div className='mb-4'>
+    <div className="mb-6">
       {recentReview.map(item => (
         <div key={item.id} className="bg-zinc-400 text-black rounded p-4 mb-4">
           <div className="flex flex-row items-center gap-2">
@@ -23,7 +21,7 @@ const ReviewCard: React.FC = () => {
               <img
                 src={
                   item.author_details.avatar_path.includes('https')
-                    ? `${item.author_details.avatar_path.slice(1,)}`
+                    ? `${item.author_details.avatar_path.slice(1)}`
                     : `https://image.tmdb.org/t/p/w32_and_h32_face/${item.author_details.avatar_path}`
                 }
                 alt={`${item.author_details.username} 프로필 사진`}
@@ -41,7 +39,7 @@ const ReviewCard: React.FC = () => {
             )}
             <p className="text-lg font-bold">{item.author}</p>
           </div>
-          <p className='my-1 text-justify text-sm'>{item.content}</p>
+          <p className="my-1 text-justify text-sm">{item.content}</p>
           <p className="text-right">{moment(item.created_at).format('LLL')}</p>
         </div>
       ))}
