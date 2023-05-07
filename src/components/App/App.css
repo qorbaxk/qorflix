@@ -37,6 +37,13 @@
     @apply after:content-[''] after:block after:h-1 after:bg-primary-100 after:w-full after:absolute after:bottom-[-2] after:left-0;
   }
 
+  .pageStyle {
+    @apply mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-zinc-400 bg-transparent p-0 text-sm text-zinc-400 transition duration-150 ease-in-out;
+  }
+  .activePageStyle {
+    @apply bg-primary-100 p-0 text-white shadow-md border-primary-100;
+  }
+
   .a11y-hidden {
     background-color: red;
     position: absolute;
