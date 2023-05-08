@@ -36,7 +36,7 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
                 'linear-gradient(90deg, rgba(0, 0, 0, 0.8) 50%, transparent)',
               height: '100%',
             }}
-            className="rounded-xl p-6"
+            className="rounded-xl p-6 flex flex-col justify-center"
           >
             <div className="flex flex-row gap-2 items-center">
               <img
@@ -71,8 +71,8 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
             </p>
             <div className="flex flex-col gap-3">
               {current < item.release_date ? (
-                <p className="flex flex-row gap-2">
-                  <span className="text-xs font-bold p-1 rounded-lg bg-gray-500">
+                <p className="flex flex-row gap-2 items-center">
+                  <span className="w-fit text-xs font-bold p-1 rounded-lg bg-gray-500">
                     개봉일
                   </span>
                   <span className="text-lg">{item.release_date}</span>
