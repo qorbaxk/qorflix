@@ -8,7 +8,7 @@ const Banner: React.FC = () => {
   )
 
   return (
-    <div className="mb-24">
+    <div className="mb-32">
       <h2 className="a11y-hidden">메인 배너</h2>
       <div
         className="bannerFilm"
@@ -27,7 +27,7 @@ const Banner: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-40">
+        <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-32">
           <p
             className="block w-full text-5xl font-bold"
             role="text"

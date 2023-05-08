@@ -2,6 +2,7 @@ import React from 'react'
 import CardSwiper from './CardSwiper'
 import { useSelector } from 'react-redux'
 import { RootState } from './../../redux/store'
+import { oneMovieProps } from './../../redux/slice/movieSlice'
 
 const NowPlaying: React.FC = () => {
   const movie = useSelector(
@@ -17,6 +18,10 @@ const NowPlaying: React.FC = () => {
   const rateSortedMovies = [...filteringMovies].sort(
     (a, b) => b.vote_average - a.vote_average,
   )
+
+  
+  rateSortedMovies.unshift(rateSortedMovies.pop() as oneMovieProps)
+  rateSortedMovies.unshift(rateSortedMovies.pop() as oneMovieProps)
 
   return (
     <div className="px-32">

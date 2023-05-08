@@ -8,7 +8,7 @@ import {
   getComingMovies,
   getPlayingMovies,
 } from '../redux/slice/movieSlice'
-import { falseLoading } from '../redux/slice/loadingSlice'
+import { trueLoading, falseLoading } from '../redux/slice/loadingSlice'
 import Banner from '../components/Home/Banner'
 import Popular from '../components/Home/Popular'
 import Upcoming from '../components/Home/Upcoming'
@@ -22,6 +22,8 @@ const Home: React.FC = () => {
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY
   const dispatch = useDispatch()
   const getMovies = async () => {
+    dispatch(trueLoading())
+
     const popularMovieApi = api.get(
       `/movie/popular?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`,
     )
@@ -69,6 +71,7 @@ const Home: React.FC = () => {
   }
   useEffect(() => {
     getMovies()
+    window.scrollTo(0, 0)
   }, [])
 
   if (loading) {
@@ -85,11 +88,13 @@ const Home: React.FC = () => {
     )
   }
   return (
-    <div className="baseColor min-h-screen h-full">
-      <Banner />
-      <NowPlaying />
-      <Popular />
-      <Upcoming />
+    <div className='w-full bg-black'>
+      <div className="baseColor baseContainer">
+        <Banner />
+        <NowPlaying />
+        <Popular />
+        <Upcoming />
+      </div>
     </div>
   )
 }

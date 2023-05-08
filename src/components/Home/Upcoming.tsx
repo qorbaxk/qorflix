@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from './../../redux/store'
 import CardSwiper from './CardSwiper'
+import { oneMovieProps } from './../../redux/slice/movieSlice'
 
 const Upcoming: React.FC = () => {
   const movie = useSelector(
@@ -13,6 +14,9 @@ const Upcoming: React.FC = () => {
     if (a.release_date < b.release_date) return -1
     return 0
   })
+
+  dateSortedMovies.unshift(dateSortedMovies.pop() as oneMovieProps)
+  dateSortedMovies.unshift(dateSortedMovies.pop() as oneMovieProps)
 
   return (
     <div className="px-32">
