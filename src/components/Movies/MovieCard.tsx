@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { oneMovieProps } from '../../redux/slice/movieSlice'
+import { useNavigate } from 'react-router-dom'
 
 type movieCardProps = {
   movie: oneMovieProps[]
@@ -14,13 +15,23 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
   }-${now.getDate() > 9 ? now.getDate() : `0${now.getDate()}`}`
   const genre = useSelector((movieState: RootState) => movieState.mv.genreList)
 
+  const navigate = useNavigate()
+
+  const gotoDetail = (id: number) => {
+    navigate(`/movies/${id}`)
+  }
+
   return (
     <div className="grid grid-cols-2 place-items-center gap-8">
       {movie.map(item => (
         <div
           key={item.id}
           style={{
-            backgroundImage: `url(${`https://image.tmdb.org/t/p/original//${item.backdrop_path}`})`,
+            backgroundImage: `url(${
+              item.backdrop_path
+                ? `https://image.tmdb.org/t/p/original//${item.backdrop_path}`
+                : `https://image.tmdb.org/t/p/original//${item.poster_path}`
+            })`,
             width: '360px',
             height: '500px',
             backgroundSize: 'cover',
@@ -29,6 +40,7 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
             cursor: 'pointer',
           }}
           className="rounded-xl"
+          onClick={() => gotoDetail(item.id)}
         >
           <div
             style={{
