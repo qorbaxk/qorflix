@@ -39,13 +39,26 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
             className="rounded-xl p-6 flex flex-col justify-center"
           >
             <div className="flex flex-row gap-2 items-center">
-              <img
-                aria-hidden
-                src={`https://image.tmdb.org/t/p/original//${item.poster_path}`}
-                alt={`${item.title} 포스터`}
-                width={80}
-                height={100}
-              />
+              {item.poster_path ? (
+                <img
+                  aria-hidden
+                  src={`https://image.tmdb.org/t/p/original//${item.poster_path}`}
+                  alt={`${item.title} 포스터`}
+                  width={80}
+                  height={100}
+                />
+              ) : (
+                <div
+                  aria-hidden
+                  style={{
+                    backgroundImage: 'url(/src/assets/Poster.svg)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    width: '80px',
+                    height: '100px',
+                  }}
+                ></div>
+              )}
               <div>
                 <p className="text-2xl">{item.title}</p>
                 <p className="ml-1 text-[#9ac7fa]">
