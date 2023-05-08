@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { getPage } from '../../redux/slice/pageSlice'
 
-const Paging = () => {
+const Paging: React.FC = () => {
   const dispatch = useDispatch()
   const page = useSelector((pageState: RootState) => pageState.pg.page)
 
@@ -12,10 +12,8 @@ const Paging = () => {
     dispatch(getPage(page))
   }
 
-  console.log(page)
-
   return (
-    <>
+    <div className='py-6'>
       <Pagination
         activePage={page}
         hideDisabled={true}
@@ -24,7 +22,7 @@ const Paging = () => {
         pageRangeDisplayed={5}
         onChange={(page: number) => pageHandler(page)}
       />
-    </>
+    </div>
   )
 }
 
