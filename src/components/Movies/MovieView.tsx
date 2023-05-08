@@ -16,11 +16,9 @@ const MovieView: React.FC = () => {
     v => v.vote_average > 0 && v.vote_count > 100 && v.overview !== '',
   )
 
-  console.log(answer)
-
   return (
     <>
-      {answer[1] ? (
+      {answer.length >= 1 ? (
         <MovieCard movie={answer} />
       ) : (
         <MovieCard movie={movie} />
