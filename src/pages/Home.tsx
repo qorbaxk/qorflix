@@ -88,7 +88,7 @@ const Home: React.FC = () => {
     )
   }
   return (
-    <div className='w-full bg-black'>
+    <div className="w-full bg-black">
       <div className="baseColor baseContainer">
         <Banner />
         <NowPlaying />
