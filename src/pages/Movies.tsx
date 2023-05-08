@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import { trueLoading, falseLoading } from '../redux/slice/loadingSlice'
 import ClipLoader from 'react-spinners/ClipLoader'
-import { getGenreList, getAllTimeMovies } from '../redux/slice/movieSlice'
+import {
+  getGenreList,
+  getAllTimeMovies,
+  getSearchMovies,
+} from '../redux/slice/movieSlice'
 import Paging from '../components/Pagination/Paging'
 import Search from '../components/Movies/Search'
 import MovieView from '../components/Movies/MovieView'
@@ -14,6 +18,7 @@ const Movies: React.FC = () => {
     (loadingState: RootState) => loadingState.ld.loading,
   )
   const page = useSelector((pageState: RootState) => pageState.pg.page)
+  const keyword = useSelector((searchState: RootState) => searchState.sh.search)
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY
   const dispatch = useDispatch()
@@ -27,10 +32,14 @@ const Movies: React.FC = () => {
     const genreApi = api.get(
       `/genre/movie/list?api_key=${API_KEY}&language=ko-KR`,
     )
+    const searchApi = api.get(
+      `/search/movie?api_key=${API_KEY}&language=ko-KR&query=${keyword}&include_adult=true`,
+    )
 
-    let [allTimeMovies, genreList] = await Promise.all([
+    let [allTimeMovies, genreList, searchMovies] = await Promise.all([
       allTimeMovieApi,
       genreApi,
+      searchApi,
     ])
     dispatch(
       getGenreList({
@@ -44,13 +53,19 @@ const Movies: React.FC = () => {
       }),
     )
 
+    dispatch(
+      getSearchMovies({
+        searchMovies: searchMovies.data.results,
+      }),
+    )
+
     dispatch(falseLoading())
   }
 
   useEffect(() => {
     getAllMovies()
     window.scrollTo(0, 0)
-  }, [page])
+  }, [page, keyword])
 
   if (loading) {
     return (
@@ -67,11 +82,11 @@ const Movies: React.FC = () => {
   }
   return (
     <div className="baseColor baseContainer">
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-row justify-around pb-6">
         <Search />
-        <MovieView/>
+        <MovieView />
       </div>
-      <Paging />
+      {keyword ? null : <Paging />}
     </div>
   )
 }
