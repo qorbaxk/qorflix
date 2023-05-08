@@ -10,6 +10,7 @@ const Anchor: React.FC = () => {
       <div className="flex flex-row justify-between text-xl ">
         {anchorList.map(a => (
           <button
+            type="button"
             key={a}
             className={`${
               clicked === a ? 'active underBar' : 'unActive'

@@ -43,10 +43,22 @@ const ReviewCard: React.FC = () => {
                 alt="기본 인물 이미지"
               />
             )}
-            <p className="font-bold">{selected.author}</p>
+            <p role="text" aria-label="리뷰 글쓴이" className="font-bold">
+              {selected.author}
+            </p>
           </div>
-          <p className="mb-2 text-justify text-sm">{selected.content}</p>
-          <p className="text-right text-xs">
+          <p
+            role="text"
+            aria-label="리뷰 전체 내용"
+            className="mb-2 text-justify text-sm"
+          >
+            {selected.content}
+          </p>
+          <p
+            role="text"
+            aria-label="리뷰 작성 시간"
+            className="text-right text-xs"
+          >
             {moment(selected.created_at).format('LLL')}
           </p>
           <button
@@ -86,16 +98,24 @@ const ReviewCard: React.FC = () => {
                     alt="기본 인물 이미지"
                   />
                 )}
-                <p className="font-bold">{item.author}</p>
+                <p role="text" aria-label="리뷰 글쓴이" className="font-bold">
+                  {item.author}
+                </p>
               </div>
               <p
+                role="text"
+                aria-label="리뷰 일부 내용"
                 className={`mb-2 text-justify text-sm ${
                   item.content.length > 65 ? 'line-clamp-2' : ''
                 }`}
               >
                 {item.content}
               </p>
-              <p className="text-right text-xs">
+              <p
+                role="text"
+                aria-label="리뷰 작성 시간"
+                className="text-right text-xs"
+              >
                 {moment(item.created_at).format('LLL')}
               </p>
             </div>

@@ -24,7 +24,7 @@ const SubLikeMovie: React.FC = () => {
           ))}
         </div>
       ) : (
-        <p>이 영화와 비슷한 추천 영화가 없습니다.</p>
+        <p role='alert'>이 영화와 비슷한 추천 영화가 없습니다.</p>
       )}
     </>
   )

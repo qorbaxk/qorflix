@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import api from '../redux/api'
+import ClipLoader from 'react-spinners/ClipLoader'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../redux/store'
@@ -10,10 +11,9 @@ import {
   getTrailerMovie,
 } from '../redux/slice/detailSlice'
 import { getCredits } from '../redux/slice/creditSlice'
-import OverView from '../components/Detail/OverView'
 import { trueLoading, falseLoading } from '../redux/slice/loadingSlice'
-import ClipLoader from 'react-spinners/ClipLoader'
 import { getGenreList } from '../redux/slice/movieSlice'
+import OverView from '../components/Detail/OverView'
 
 const Detail: React.FC = () => {
   const { id } = useParams()
@@ -44,15 +44,21 @@ const Detail: React.FC = () => {
       `/genre/movie/list?api_key=${API_KEY}&language=ko-KR`,
     )
 
-    let [detailMovie, creditMovie, trailerMovie, reviewsMovie, recommendMovie,genreList] =
-      await Promise.all([
-        detailMovieApi,
-        creditMovieApi,
-        trailerApi,
-        reviewApi,
-        recommendApi,
-        genreApi
-      ])
+    let [
+      detailMovie,
+      creditMovie,
+      trailerMovie,
+      reviewsMovie,
+      recommendMovie,
+      genreList,
+    ] = await Promise.all([
+      detailMovieApi,
+      creditMovieApi,
+      trailerApi,
+      reviewApi,
+      recommendApi,
+      genreApi,
+    ])
 
     dispatch(getSelectedMovie(detailMovie.data))
     dispatch(getCredits(creditMovie.data))

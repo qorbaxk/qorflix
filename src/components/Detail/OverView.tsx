@@ -22,28 +22,55 @@ const OverView: React.FC = () => {
         />
         <figcaption className="grow flex flex-col justify-start gap-8 relative">
           <div className="flex flex-col items-start justify-start gap-4">
-            <p className="text-base italic  w-[80%]">{detail.tagline}</p>
-            <p className="text-5xl font-bold  w-[80%]">{detail.title}</p>
+            <p
+              role="text"
+              aria-label="영화 한줄 소개"
+              className="text-base italic w-[80%]"
+            >
+              {detail.tagline}
+            </p>
+            <p
+              role="text"
+              aria-label="영화 제목"
+              className="text-5xl font-bold w-[80%]"
+            >
+              {detail.title}
+            </p>
 
             <div className="absolute top-10 right-0 flex flex-row items-center gap-2">
-              <p className="text-4xl">{detail.vote_average.toFixed(1)}</p>
-              <img width={35} src="/src/assets/Star.svg" alt="별점 이미지" />
+              <p role="text" aria-label="별점" className="text-4xl">
+                {detail.vote_average.toFixed(1)}
+              </p>
+              <img
+                aria-hidden
+                width={35}
+                src="/src/assets/Star.svg"
+                alt="별점 이미지"
+              />
             </div>
 
             <table>
               <tbody>
                 <tr className="text-neutral-400 text-sm flex flex-row flex-nowrap items-center">
-                  <td className="lineAfter">{`${detail.release_date.substring(
+                  <td
+                    role="text"
+                    aria-label="개봉일"
+                    className="lineAfter"
+                  >{`${detail.release_date.substring(
                     2,
                     4,
                   )}년 ${detail.release_date.substring(
                     5,
                     7,
                   )}월 ${detail.release_date.substring(8, 10)}일`}</td>
-                  <td className="lineAfter">{`${Math.floor(
-                    detail.runtime / 60,
-                  )}시간 ${detail.runtime % 60}분`}</td>
-                  <td className="lineAfter">
+                  <td
+                    role="text"
+                    aria-label="러닝타임"
+                    className="lineAfter"
+                  >{`${Math.floor(detail.runtime / 60)}시간 ${
+                    detail.runtime % 60
+                  }분`}</td>
+                  <td role="text" aria-label="관람등급" className="lineAfter">
                     {detail.adult ? '청소년 관람불가' : '전체관람가'}
                   </td>
                   <td className="flex flex-row">

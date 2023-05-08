@@ -35,15 +35,23 @@ const CastCard: React.FC = () => {
             </div>
           )}
           <figcaption>
-            <p>{v.name}</p>
+            <p role="text" aria-label="배우 이름">
+              {v.name}
+            </p>
             <div className="text-xs text-neutral-400">
               {v.character.includes('/') ? (
                 <div>
-                  <p>{v.character.substring(0, v.character.indexOf('/'))} /</p>
-                  <p>{v.character.substring(v.character.indexOf('/') + 1)}</p>
+                  <p role="text" aria-label="첫번째 역할">
+                    {v.character.substring(0, v.character.indexOf('/'))} /
+                  </p>
+                  <p role="text" aria-label="두번째 역할">
+                    {v.character.substring(v.character.indexOf('/') + 1)}
+                  </p>
                 </div>
               ) : (
-                v.character
+                <p role="text" aria-label="배우 역할">
+                  {v.character}
+                </p>
               )}
             </div>
           </figcaption>

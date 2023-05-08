@@ -31,7 +31,9 @@ const DirectorCard: React.FC<DirectorProps> = ({ director }) => {
           </div>
         )}
         <figcaption>
-          <p>{director?.name}</p>
+          <p role="text" aria-label="감독 이름">
+            {director?.name}
+          </p>
           <p className="text-xs text-neutral-400">{director?.job}</p>
         </figcaption>
       </figure>
