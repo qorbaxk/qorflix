@@ -36,7 +36,7 @@ const CastCard: React.FC = () => {
           )}
           <figcaption>
             <p>{v.name}</p>
-            <p className="text-xs text-neutral-400">
+            <div className="text-xs text-neutral-400">
               {v.character.includes('/') ? (
                 <div>
                   <p>{v.character.substring(0, v.character.indexOf('/'))} /</p>
@@ -45,7 +45,7 @@ const CastCard: React.FC = () => {
               ) : (
                 v.character
               )}
-            </p>
+            </div>
           </figcaption>
         </figure>
       ))}
