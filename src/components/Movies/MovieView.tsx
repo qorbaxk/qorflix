@@ -8,13 +8,23 @@ const MovieView: React.FC = () => {
     (movieState: RootState) => movieState.mv.allTimeMovies,
   )
 
+  const answer = useSelector(
+    (searchState: RootState) => searchState.mv.searchMovies,
+  )
+
   movie = movie.filter(
     v => v.vote_average > 0 && v.vote_count > 100 && v.overview !== '',
   )
 
+  console.log(answer)
+
   return (
     <>
-      <MovieCard movie={movie} />
+      {answer[1] ? (
+        <MovieCard movie={answer} />
+      ) : (
+        <MovieCard movie={movie} />
+      )}
     </>
   )
 }
