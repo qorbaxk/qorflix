@@ -3,23 +3,35 @@ import { Link } from 'react-router-dom'
 
 const Navigation: React.FC = () => {
   return (
-    <div className='bg-black'>
+    <div className="bg-black z-100">
       <nav className="baseColor max-w-scr mx-auto flex flex-row items-center justify-between py-4 px-32">
         <div className="flex flex-row items-center gap-10">
-          <Link to="/" aria-label="메인 홈 바로가기">
+          <Link to="/" aria-label="메인 홈 바로가기" className="cursor-pointer">
             <h1>
               <img src="/src/assets/Logo.svg" alt="넷플릭스 메인 로고" />
             </h1>
           </Link>
-          <Link to="/movies" aria-label="전체 영화 보러가기">
+          <Link
+            to="/movies"
+            aria-label="전체 영화 보러가기"
+            className="cursor-pointer"
+          >
             전체 영화
           </Link>
-          <Link to="/favorite" aria-label="내가 찜한 영화 보러가기">
+          <Link
+            to="/favorite"
+            aria-label="내가 찜한 영화 보러가기"
+            className="cursor-pointer"
+          >
             찜한 영화
           </Link>
         </div>
         <div>
-          <Link to="/login" aria-label="로그인 하러가기">
+          <Link
+            to="/login"
+            aria-label="로그인 하러가기"
+            className="cursor-pointer"
+          >
             로그인
           </Link>
         </div>

@@ -13,7 +13,7 @@
   }
 
   .bannerFilm {
-    @apply before:absolute before:left-2/4 before:translate-x-[-50%] before:w-full before:max-w-scr before:h-full before:min-h-[600px] before:content-[''] before:bg-gradient-to-t before:from-black before:to-transparent;
+    @apply before:absolute before:left-2/4 before:translate-x-[-50%] before:w-full before:max-w-scr before:h-full before:min-h-[600px] before:content-[''] before:bg-gradient-to-t before:from-black before:to-transparent before:mt-[100px];
   }
 
   .dotAfter {
