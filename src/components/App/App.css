@@ -44,6 +44,16 @@
     @apply bg-primary-100 p-0 text-white shadow-md border-primary-100;
   }
 
+  .pagination {
+    @apply flex flex-row justify-center gap-2;
+  }
+  ul.pagination li {
+    @apply border border-2 rounded-full border-zinc-400 px-4 py-2 cursor-pointer;
+  }
+  ul.pagination li.active {
+    @apply bg-primary-100 border-primary-100;
+  }
+
   .a11y-hidden {
     background-color: red;
     position: absolute;

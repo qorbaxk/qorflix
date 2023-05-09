@@ -3,13 +3,17 @@ import movieReducer from './slice/movieSlice'
 import loadingReducer from './slice/loadingSlice'
 import detailSlice from './slice/detailSlice'
 import creditSlice from './slice/creditSlice'
+import pageSlice from './slice/pageSlice'
+import searchSlice from './slice/searchSlice'
 
 export const store = configureStore({
   reducer: {
     mv: movieReducer,
     ld: loadingReducer,
     dt: detailSlice,
-    cd: creditSlice
+    cd: creditSlice,
+    pg: pageSlice,
+    sh: searchSlice,
   },
 })
 

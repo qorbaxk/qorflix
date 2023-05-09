@@ -1,47 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Pagination from 'react-js-pagination'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { getPage } from '../../redux/slice/pageSlice'
 
-export interface pagingProps {
-  totalCount: number
-}
+const Paging: React.FC = () => {
+  const dispatch = useDispatch()
+  const page = useSelector((pageState: RootState) => pageState.pg.page)
 
-const Paging: React.FC<pagingProps> = ({ totalCount }) => {
-  const pages = Math.floor(totalCount / 5)
-  const [page, setPage] = useState(1)
+  const pageHandler = (page: number) => {
+    dispatch(getPage(page))
+  }
 
   return (
-    <>
-      <nav>
-        <ul className="flex">
-          {page < 5 ? null : (
-            <li>
-              <a className="pageStyle" href="#" aria-label="Previous">
-                <span className="material-icons text-sm">&lt; </span>
-              </a>
-            </li>
-          )}
-          <ul className="flex">
-            {Array.from(Array(pages), (_, idx) => (
-              <li key={idx}>
-                <a
-                  className={`${
-                    page === idx + 1 ? 'activePageStyle' : ''
-                  } pageStyle`}
-                  href="#"
-                  onClick={() => setPage(idx + 1)}
-                >
-                  {idx + 1}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <li>
-            <a className="pageStyle" href="#" aria-label="Next">
-              <span className="material-icons text-sm">&gt;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </>
+    <div className='py-6'>
+      <Pagination
+        activePage={page}
+        hideDisabled={true}
+        itemsCountPerPage={20}
+        totalItemsCount={10000}
+        pageRangeDisplayed={5}
+        onChange={(page: number) => pageHandler(page)}
+      />
+    </div>
   )
 }
 
