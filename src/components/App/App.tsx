@@ -6,6 +6,7 @@ import Navigation from '../../components/Navigation/Navigation'
 import Detail from '../../pages/Detail'
 import Login from '../../pages/Login'
 import Favorite from '../../pages/Favorite'
+import Register from '../../pages/Register'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/movies/:id" element={<Detail />} />
