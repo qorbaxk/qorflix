@@ -1,4 +1,12 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+} from 'firebase/auth'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -19,10 +27,44 @@ const Login: React.FC = () => {
     }
   }
 
+  const onSocialClick = async (e: any) => {
+    const {
+      target: { name },
+    } = e
+    let provider
+    const auth = getAuth()
+
+    if (name === 'google') {
+      provider = new GoogleAuthProvider()
+      //구글로그인
+    } else if (name === 'github') {
+      provider = new GithubAuthProvider()
+      //깃허브로그인
+    }
+    const data = await signInWithPopup(
+      auth,
+      provider as GoogleAuthProvider | GithubAuthProvider,
+    )
+  }
+
+  const onSubmit = async (e: any): Promise<void> => {
+    e.preventDefault()
+    try {
+      let data
+      const auth = getAuth()
+      //로그인
+      data = await signInWithEmailAndPassword(auth, email, password)
+
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="baseColor baseContainer flex flex-col items-center gap-2 pt-16">
       <h2 className="text-4xl font-bold">로그인</h2>
-      <form action="" method="post" className="mt-8">
+      <form method="post" className="mt-8" onSubmit={onSubmit}>
         <fieldset className="flex flex-col gap-4 justify-center items-center w-full h-full">
           <legend className="a11y-hidden">회원 로그인 폼</legend>
           <input
@@ -36,12 +78,12 @@ const Login: React.FC = () => {
             onChange={e => onChange(e)}
           />
           {emailError ? (
-            <span className="text-red-700 text-sm w-full text-left ml-1">
+            <span className="text-red-500 text-sm w-full text-left ml-1">
               이메일 형식이 잘못되었습니다.
             </span>
           ) : (
             email && (
-              <span className="text-green-700 text-sm  w-full text-left ml-1">
+              <span className="text-green-500 text-sm  w-full text-left ml-1">
                 올바른 형식입니다.
               </span>
             )
@@ -70,12 +112,22 @@ const Login: React.FC = () => {
         </fieldset>
       </form>
       <div className="flex flex-row gap-4">
-        <button name="google" className="p-2">
+        <button onClick={onSocialClick} name="google" className="p-2">
           <img width={30} src="/src/assets/Google.svg" />
         </button>
-        <button name="github" className="p-2">
+        <button onClick={onSocialClick} name="github" className="p-2">
           <img width={30} src="/src/assets/Github.svg" />
         </button>
+      </div>
+      <div className="w-96 flex flex-row justify-between text-xs text-zinc-200">
+        <p>아직 계정이 없으세요?</p>
+        <Link
+          to="/register"
+          aria-label="회원가입 하러 가기"
+          className="underline underline-offset-4"
+        >
+          회원가입하기
+        </Link>
       </div>
     </div>
   )
