@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, MouseEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
   getAuth,
@@ -10,36 +11,31 @@ import {
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState(false)
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
-  const onChange = (e: any) => {
-    const emailRegex =
-      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
     } = e
     if (name === 'email') {
       setEmail(value)
-      !emailRegex.test(value) ? setEmailError(true) : setEmailError(false)
     } else if (name === 'password') {
       setPassword(value)
     }
   }
 
-  const onSocialClick = async (e: any) => {
+  const onSocialLogin = async (e: MouseEvent<HTMLButtonElement>) => {
     const {
-      target: { name },
+      currentTarget: { name },
     } = e
     let provider
     const auth = getAuth()
 
     if (name === 'google') {
       provider = new GoogleAuthProvider()
-      //구글로그인
     } else if (name === 'github') {
       provider = new GithubAuthProvider()
-      //깃허브로그인
     }
     const data = await signInWithPopup(
       auth,
@@ -52,10 +48,8 @@ const Login: React.FC = () => {
     try {
       let data
       const auth = getAuth()
-      //로그인
       data = await signInWithEmailAndPassword(auth, email, password)
-
-      console.log(data)
+      navigate('/')
     } catch (error) {
       console.log(error)
     }
@@ -77,17 +71,6 @@ const Login: React.FC = () => {
             value={email}
             onChange={e => onChange(e)}
           />
-          {emailError ? (
-            <span className="text-red-500 text-sm w-full text-left ml-1">
-              이메일 형식이 잘못되었습니다.
-            </span>
-          ) : (
-            email && (
-              <span className="text-green-500 text-sm  w-full text-left ml-1">
-                올바른 형식입니다.
-              </span>
-            )
-          )}
           <input
             type="password"
             id="userPw"
@@ -101,21 +84,19 @@ const Login: React.FC = () => {
           <button
             type="submit"
             className={`w-96 h-14 ${
-              emailError === false && email && password
-                ? 'bg-primary-100 '
-                : 'bg-zinc-400'
+              email && password ? 'bg-primary-100 ' : 'bg-zinc-400'
             }`}
-            disabled={emailError === false && email && password ? false : true}
+            disabled={email && password ? false : true}
           >
             로그인
           </button>
         </fieldset>
       </form>
       <div className="flex flex-row gap-4">
-        <button onClick={onSocialClick} name="google" className="p-2">
+        <button onClick={onSocialLogin} name="google" className="p-2">
           <img width={30} src="/src/assets/Google.svg" />
         </button>
-        <button onClick={onSocialClick} name="github" className="p-2">
+        <button onClick={onSocialLogin} name="github" className="p-2">
           <img width={30} src="/src/assets/Github.svg" />
         </button>
       </div>
