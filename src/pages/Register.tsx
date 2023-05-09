@@ -31,7 +31,6 @@ const Register: React.FC = () => {
     if (!emailRegExp.test(currentEmail)) {
       setEmailMessage('이메일 형식이 잘못되었습니다.')
       setIsEmail(false)
-      console.error(isEmail)
     } else {
       setEmailMessage('올바른 이메일 형식입니다.')
       setIsEmail(true)
@@ -47,7 +46,6 @@ const Register: React.FC = () => {
         '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요.',
       )
       setIsPassword(false)
-      console.error(isPassword)
     } else {
       setPasswordMessage('안전한 비밀번호 입니다.')
       setIsPassword(true)
@@ -59,7 +57,6 @@ const Register: React.FC = () => {
     if (password !== currentPasswordConfirm) {
       setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.')
       setIsPasswordConfirm(false)
-      console.error(isPasswordConfirm)
     } else {
       setPasswordConfirmMessage('비밀번호가 일치합니다.')
       setIsPasswordConfirm(true)
@@ -71,11 +68,9 @@ const Register: React.FC = () => {
     if (nickName.length < 2) {
       setNickNameMessage('닉네임은 최소 2자 이상이어야 합니다.')
       setIsNickName(false)
-      console.error(isNickName)
     } else if (nickName.length > 20) {
       setNickNameMessage('닉네임은 최대 20자까지 설정할 수 있습니다.')
       setIsNickName(false)
-      console.error(isNickName)
     } else {
       setNickNameMessage('좋은 닉네임입니다 :)')
       setIsNickName(true)
@@ -203,7 +198,7 @@ const Register: React.FC = () => {
           회원가입
         </button>
         {errorMsg && (
-          <span className="text-xs text-left text-primary-300">{errorMsg}</span>
+          <span className="text-xs w-full text-center text-primary-100">{errorMsg}</span>
         )}
       </form>
     </div>
