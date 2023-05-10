@@ -2,14 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export interface userState {
   isLoggedIn: boolean
-  uid: string
-  name: string
+  userGroup: {
+    uid: string
+    name: string
+    photoURL: string
+    photoName: string
+  }
 }
 
 const initialState: userState = {
   isLoggedIn: false,
-  uid: '',
-  name: '',
+  userGroup: {
+    uid: '',
+    name: '',
+    photoURL: '',
+    photoName: '',
+  },
 }
 
 export const userSlice = createSlice({
@@ -22,14 +30,15 @@ export const userSlice = createSlice({
     getLoggedOut: state => {
       state.isLoggedIn = false
     },
-    getUid: (state, action) => {
-      state.uid = action.payload
+    getUserGroup: (state, action) => {
+      state.userGroup = action.payload
     },
-    getName: (state, action) => {
-      state.name = action.payload
+    resetUser: state => {
+      state.userGroup = initialState.userGroup
     },
   },
 })
 
-export const { getLoggedIn, getLoggedOut, getUid, getName } = userSlice.actions
+export const { getLoggedIn, getLoggedOut, getUserGroup, resetUser } =
+  userSlice.actions
 export default userSlice.reducer
