@@ -32,15 +32,20 @@ const Login: React.FC = () => {
     let provider
     const auth = getAuth()
 
-    if (name === 'google') {
-      provider = new GoogleAuthProvider()
-    } else if (name === 'github') {
-      provider = new GithubAuthProvider()
+    try {
+      if (name === 'google') {
+        provider = new GoogleAuthProvider()
+      } else if (name === 'github') {
+        provider = new GithubAuthProvider()
+      }
+      const data = await signInWithPopup(
+        auth,
+        provider as GoogleAuthProvider | GithubAuthProvider,
+      )
+      navigate('/')
+    } catch (error) {
+      console.error(error)
     }
-    const data = await signInWithPopup(
-      auth,
-      provider as GoogleAuthProvider | GithubAuthProvider,
-    )
   }
 
   const onSubmit = async (e: any): Promise<void> => {
@@ -51,7 +56,7 @@ const Login: React.FC = () => {
       data = await signInWithEmailAndPassword(auth, email, password)
       navigate('/')
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
