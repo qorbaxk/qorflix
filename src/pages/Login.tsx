@@ -1,28 +1,69 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, MouseEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+} from 'firebase/auth'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState(false)
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
-  const onChange = (e: any) => {
-    const emailRegex =
-      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
     } = e
     if (name === 'email') {
       setEmail(value)
-      !emailRegex.test(value) ? setEmailError(true) : setEmailError(false)
     } else if (name === 'password') {
       setPassword(value)
+    }
+  }
+
+  const onSocialLogin = async (e: MouseEvent<HTMLButtonElement>) => {
+    const {
+      currentTarget: { name },
+    } = e
+    let provider
+    const auth = getAuth()
+
+    try {
+      if (name === 'google') {
+        provider = new GoogleAuthProvider()
+      } else if (name === 'github') {
+        provider = new GithubAuthProvider()
+      }
+      const data = await signInWithPopup(
+        auth,
+        provider as GoogleAuthProvider | GithubAuthProvider,
+      )
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const onSubmit = async (e: any): Promise<void> => {
+    e.preventDefault()
+    try {
+      let data
+      const auth = getAuth()
+      data = await signInWithEmailAndPassword(auth, email, password)
+      navigate('/')
+    } catch (error) {
+      console.error(error)
     }
   }
 
   return (
     <div className="baseColor baseContainer flex flex-col items-center gap-2 pt-16">
       <h2 className="text-4xl font-bold">로그인</h2>
-      <form action="" method="post" className="mt-8">
+      <form method="post" className="mt-8" onSubmit={onSubmit}>
         <fieldset className="flex flex-col gap-4 justify-center items-center w-full h-full">
           <legend className="a11y-hidden">회원 로그인 폼</legend>
           <input
@@ -35,17 +76,6 @@ const Login: React.FC = () => {
             value={email}
             onChange={e => onChange(e)}
           />
-          {emailError ? (
-            <span className="text-red-700 text-sm w-full text-left ml-1">
-              이메일 형식이 잘못되었습니다.
-            </span>
-          ) : (
-            email && (
-              <span className="text-green-700 text-sm  w-full text-left ml-1">
-                올바른 형식입니다.
-              </span>
-            )
-          )}
           <input
             type="password"
             id="userPw"
@@ -59,23 +89,31 @@ const Login: React.FC = () => {
           <button
             type="submit"
             className={`w-96 h-14 ${
-              emailError === false && email && password
-                ? 'bg-primary-100 '
-                : 'bg-zinc-400'
+              email && password ? 'bg-primary-100 ' : 'bg-zinc-400'
             }`}
-            disabled={emailError === false && email && password ? false : true}
+            disabled={email && password ? false : true}
           >
             로그인
           </button>
         </fieldset>
       </form>
       <div className="flex flex-row gap-4">
-        <button name="google" className="p-2">
+        <button onClick={onSocialLogin} name="google" className="p-2">
           <img width={30} src="/src/assets/Google.svg" />
         </button>
-        <button name="github" className="p-2">
+        <button onClick={onSocialLogin} name="github" className="p-2">
           <img width={30} src="/src/assets/Github.svg" />
         </button>
+      </div>
+      <div className="w-96 flex flex-row justify-between text-xs text-zinc-200">
+        <p>아직 계정이 없으세요?</p>
+        <Link
+          to="/register"
+          aria-label="회원가입 하러 가기"
+          className="underline underline-offset-4"
+        >
+          회원가입하기
+        </Link>
       </div>
     </div>
   )

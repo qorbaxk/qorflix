@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { auth } from '../../firebase-config'
 
-const Navigation: React.FC = () => {
+type naviProps = {
+  isLoggedIn: boolean
+}
+
+const Navigation: React.FC<naviProps> = ({ isLoggedIn }) => {
+  const user = auth.currentUser
+
   return (
     <div className="bg-black z-100">
       <nav className="baseColor max-w-scr mx-auto flex flex-row items-center justify-between py-4 px-32">
@@ -27,13 +34,30 @@ const Navigation: React.FC = () => {
           </Link>
         </div>
         <div>
-          <Link
-            to="/login"
-            aria-label="로그인 하러가기"
-            className="cursor-pointer"
-          >
-            로그인
-          </Link>
+          {isLoggedIn && user?.displayName ? (
+            <Link
+              to="/mypage"
+              aria-label="마이페이지 가기"
+              className="cursor-pointer flex flex-row gap-2 items-center"
+            >
+              {user.photoURL && (
+                <img
+                  src={user.photoURL}
+                  alt="프로필 사진"
+                  className="rounded-full w-6 h-6 object-cover object-center"
+                />
+              )}
+              <span>{`${user.displayName} 님`}</span>
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              aria-label="로그인 하러가기"
+              className="cursor-pointer"
+            >
+              로그인
+            </Link>
+          )}
         </div>
       </nav>
     </div>

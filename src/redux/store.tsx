@@ -5,6 +5,7 @@ import detailSlice from './slice/detailSlice'
 import creditSlice from './slice/creditSlice'
 import pageSlice from './slice/pageSlice'
 import searchSlice from './slice/searchSlice'
+import userSlice from './slice/userSlice'
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     cd: creditSlice,
     pg: pageSlice,
     sh: searchSlice,
+    lg: userSlice,
   },
 })
 
