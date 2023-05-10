@@ -44,7 +44,7 @@ const Navigation: React.FC<naviProps> = ({ isLoggedIn }) => {
                 <img
                   src={user.photoURL}
                   alt="프로필 사진"
-                  className="rounded-full w-6 h-6"
+                  className="rounded-full w-6 h-6 object-cover object-center"
                 />
               )}
               <span>{`${user.displayName} 님`}</span>
