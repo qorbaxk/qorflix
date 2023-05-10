@@ -5,15 +5,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getLoggedIn,
   getLoggedOut,
-  getName,
-  getUid,
+  getUserGroup,
 } from '../../redux/slice/userSlice'
 import { auth } from '../../firebase-config'
 import { RootState } from '../../redux/store'
 
 const Navigation: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const { name } = useSelector((userState: RootState) => userState.lg)
+  const userGroup = useSelector(
+    (userState: RootState) => userState.lg.userGroup,
+  )
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -22,8 +23,14 @@ const Navigation: React.FC = () => {
       if (user) {
         setIsLoggedIn(true)
         dispatch(getLoggedIn())
-        dispatch(getUid(user.uid))
-        dispatch(getName(user.displayName))
+        dispatch(
+          getUserGroup({
+            ...userGroup,
+            uid: user.uid,
+            name: user.displayName,
+            photoURL: user.photoURL,
+          }),
+        )
       } else {
         setIsLoggedIn(false)
         dispatch(getLoggedOut())
@@ -60,9 +67,16 @@ const Navigation: React.FC = () => {
             <Link
               to="/mypage"
               aria-label="마이페이지 가기"
-              className="cursor-pointer"
+              className="cursor-pointer flex flex-row gap-2 items-center"
             >
-              {`${name} 님`}
+              {userGroup.photoURL && (
+                <img
+                  src={userGroup.photoURL}
+                  alt="프로필 사진"
+                  className="rounded-full w-6 h-6"
+                />
+              )}
+              <span>{`${userGroup.name} 님`}</span>
             </Link>
           ) : (
             <Link
