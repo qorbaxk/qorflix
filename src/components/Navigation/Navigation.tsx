@@ -8,23 +8,13 @@ import {
   getName,
   getUid,
 } from '../../redux/slice/userSlice'
-import { auth, dbService } from '../../firebase-config'
+import { auth } from '../../firebase-config'
 import { RootState } from '../../redux/store'
-import { collection, getDocs, query, where } from 'firebase/firestore'
 
 const Navigation: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const { uid, name } = useSelector((userState: RootState) => userState.lg)
+  const { name } = useSelector((userState: RootState) => userState.lg)
   const dispatch = useDispatch()
-
-  const getUser = async () => {
-    const docRef = query(
-      collection(dbService, 'userInfo'),
-      where('creatorID', '==', uid),
-    )
-    const docSnap = await getDocs(docRef)
-    dispatch(getName(docSnap.docs[0].data().userNickName))
-  }
 
   useEffect(() => {
     const auth = getAuth()
@@ -33,7 +23,7 @@ const Navigation: React.FC = () => {
         setIsLoggedIn(true)
         dispatch(getLoggedIn())
         dispatch(getUid(user.uid))
-        getUser()
+        dispatch(getName(user.displayName))
       } else {
         setIsLoggedIn(false)
         dispatch(getLoggedOut())
