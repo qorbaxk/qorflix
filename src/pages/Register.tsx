@@ -1,9 +1,14 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { auth, dbService } from '../firebase-config'
-import { collection, addDoc } from 'firebase/firestore'
+import { auth, storageService } from '../firebase-config'
 import RegisterInput from '../components/Register/RegisterInput'
+import RegisterImage from '../components/Register/RegisterImage'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+
+import { getDownloadURL, ref, uploadString } from 'firebase/storage'
+import { resetUser } from '../redux/slice/userSlice'
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -12,6 +17,7 @@ const Register: React.FC = () => {
   const [nickName, setNickName] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [emailMessage, setEmailMessage] = useState('')
   const [passwordMessage, setPasswordMessage] = useState('')
@@ -22,6 +28,13 @@ const Register: React.FC = () => {
   const [isPassword, setIsPassword] = useState(false)
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
   const [isNickName, setIsNickName] = useState(false)
+
+  const userGroup = useSelector(
+    (userState: RootState) => userState.lg.userGroup,
+  )
+  const { uid, photoName, photoURL } = useSelector(
+    (userState: RootState) => userState.lg.userGroup,
+  )
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value
@@ -83,46 +96,55 @@ const Register: React.FC = () => {
       code: string
       message: string
     }
-    try {
-      await createUserWithEmailAndPassword(auth, email, password).then(
-        async userCredential => {
-          await updateProfile(userCredential.user, {
-            displayName: nickName,
-          })
-        },
-      )
-      await addDoc(collection(dbService, 'userInfo'), {
-        email: email,
-        password: password,
-        checkPassword: checkPassword,
-        userNickName: nickName,
-        createdAt: new Date(),
-        creatorID: auth.currentUser ? auth.currentUser.uid : '',
+
+    const imgRef = ref(storageService, `userImg/${uid}/${photoName}`)
+    const response = await uploadString(imgRef, photoURL, 'data_url')
+    const imgUrl = await getDownloadURL(response.ref)
+    Promise.all([response, imgUrl])
+      .then(imgUrl => ({
+        ...userGroup,
+        name: nickName,
+        photoURL: imgUrl[1],
+      }))
+      .then(async userInfo => {
+        await createUserWithEmailAndPassword(auth, email, password).then(
+          async userCredential => {
+            await updateProfile(userCredential.user, {
+              displayName: userInfo.name,
+              photoURL: userInfo.photoURL,
+            })
+          },
+        )
       })
-      setEmail('')
-      setPassword('')
-      setCheckPassword('')
-      setNickName('')
-      navigate('/login')
-    } catch (error) {
-      const err = error as SystemError
-      switch (err.code) {
-        case 'auth/invalid-email':
-          setErrorMsg('잘못된 이메일 주소입니다.')
-          break
-        case 'auth/email-already-in-use':
-          setErrorMsg('이미 가입되어 있는 계정입니다.')
-          break
-      }
-    }
+      .catch(error => {
+        const err = error as SystemError
+        switch (err.code) {
+          case 'auth/invalid-email':
+            setErrorMsg('잘못된 이메일 주소입니다.')
+            break
+          case 'auth/email-already-in-use':
+            setErrorMsg('이미 가입되어 있는 계정입니다.')
+            break
+        }
+      })
+      .finally(() => {
+        setEmail('')
+        setPassword('')
+        setCheckPassword('')
+        setNickName('')
+        dispatch(resetUser())
+        navigate('/')
+      })
   }
+
   return (
-    <div className="baseColor baseContainer flex flex-col items-center gap-2 pt-16">
+    <div className="baseColor baseContainer flex flex-col items-center gap-2 py-16">
       <h2 className="text-4xl font-bold">회원가입</h2>
       <form
         className="flex flex-col gap-4 items-center justify-center mt-8"
         onSubmit={onSubmit}
       >
+        <RegisterImage />
         <RegisterInput
           id="email"
           type="email"
@@ -191,12 +213,20 @@ const Register: React.FC = () => {
           type="submit"
           value="회원가입"
           className={`w-96 h-14 text-center ${
-            isEmail && isPassword && isPasswordConfirm && isNickName
+            userGroup.photoURL !== '' &&
+            isEmail &&
+            isPassword &&
+            isPasswordConfirm &&
+            isNickName
               ? 'bg-primary-100 '
               : 'bg-zinc-400'
           }`}
           disabled={
-            isEmail && isPassword && isPasswordConfirm && isNickName
+            userGroup.photoURL !== '' &&
+            isEmail &&
+            isPassword &&
+            isPasswordConfirm &&
+            isNickName
               ? false
               : true
           }
