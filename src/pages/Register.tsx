@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth, dbService } from '../firebase-config'
 import { collection, addDoc } from 'firebase/firestore'
 import RegisterInput from '../components/Register/RegisterInput'
@@ -84,7 +84,13 @@ const Register: React.FC = () => {
       message: string
     }
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        async userCredential => {
+          await updateProfile(userCredential.user, {
+            displayName: nickName,
+          })
+        },
+      )
       await addDoc(collection(dbService, 'userInfo'), {
         email: email,
         password: password,
@@ -198,7 +204,9 @@ const Register: React.FC = () => {
           회원가입
         </button>
         {errorMsg && (
-          <span className="text-xs w-full text-center text-primary-100">{errorMsg}</span>
+          <span className="text-xs w-full text-center text-primary-100">
+            {errorMsg}
+          </span>
         )}
       </form>
     </div>
