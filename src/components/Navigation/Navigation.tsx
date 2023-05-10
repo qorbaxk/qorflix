@@ -1,42 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  getLoggedIn,
-  getLoggedOut,
-  getUserGroup,
-} from '../../redux/slice/userSlice'
 import { auth } from '../../firebase-config'
-import { RootState } from '../../redux/store'
 
-const Navigation: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const userGroup = useSelector(
-    (userState: RootState) => userState.lg.userGroup,
-  )
-  const dispatch = useDispatch()
+type naviProps = {
+  isLoggedIn: boolean
+}
 
-  useEffect(() => {
-    const auth = getAuth()
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        setIsLoggedIn(true)
-        dispatch(getLoggedIn())
-        dispatch(
-          getUserGroup({
-            ...userGroup,
-            uid: user.uid,
-            name: user.displayName,
-            photoURL: user.photoURL,
-          }),
-        )
-      } else {
-        setIsLoggedIn(false)
-        dispatch(getLoggedOut())
-      }
-    })
-  }, [auth])
+const Navigation: React.FC<naviProps> = ({ isLoggedIn }) => {
+  const user = auth.currentUser
 
   return (
     <div className="bg-black z-100">
@@ -63,20 +34,20 @@ const Navigation: React.FC = () => {
           </Link>
         </div>
         <div>
-          {isLoggedIn ? (
+          {isLoggedIn && user?.displayName ? (
             <Link
               to="/mypage"
               aria-label="마이페이지 가기"
               className="cursor-pointer flex flex-row gap-2 items-center"
             >
-              {userGroup.photoURL && (
+              {user.photoURL && (
                 <img
-                  src={userGroup.photoURL}
+                  src={user.photoURL}
                   alt="프로필 사진"
                   className="rounded-full w-6 h-6"
                 />
               )}
-              <span>{`${userGroup.name} 님`}</span>
+              <span>{`${user.displayName} 님`}</span>
             </Link>
           ) : (
             <Link
