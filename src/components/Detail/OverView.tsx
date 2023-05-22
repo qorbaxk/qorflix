@@ -2,11 +2,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import Anchor from './Anchor'
+import LikeBtn from './LikeBtn'
+import ShareBtn from './ShareBtn'
+import ReviewBtn from './ReviewBtn'
 
 const OverView: React.FC = () => {
   const detail = useSelector(
     (detailState: RootState) => detailState.dt.selectedMovieInfo,
   )
+
+  console.log(detail)
 
   return (
     <div className="px-32 mx-auto pt-8">
@@ -87,6 +92,11 @@ const OverView: React.FC = () => {
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div className="flex flex-row justify-start gap-8">
+            <LikeBtn movieObj={detail} />
+            <ShareBtn />
+            {/* <ReviewBtn /> */}
           </div>
           <Anchor />
         </figcaption>
