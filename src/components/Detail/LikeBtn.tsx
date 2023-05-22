@@ -14,11 +14,13 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
   const [like, setLike] = useState<boolean>(false)
 
   const addBtn = async () => {
+    const now = new Date().getTime()
+    const listObj = { ...movieObj, addTime: now }
     setLike(true)
     if (auth.currentUser) {
       await setDoc(
         doc(dbService, auth.currentUser.uid, movieObj.title),
-        movieObj,
+        listObj,
       )
       console.log('추가')
     }
