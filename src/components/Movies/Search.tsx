@@ -20,7 +20,7 @@ const Search: React.FC = () => {
         <input
           type="search"
           aria-label="검색창"
-          className="grow h-full px-1 text-black"
+          className="grow h-full px-2 text-black rounded-lg"
           placeholder="검색어를 입력하세요"
           value={text}
           onChange={e => setText(e.target.value)}
