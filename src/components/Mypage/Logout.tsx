@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { resetUser } from '../../redux/slice/userSlice'
 
-const Logout = () => {
+const Logout:React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
