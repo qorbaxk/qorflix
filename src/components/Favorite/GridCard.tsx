@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { selectedMovieProps } from '../../redux/slice/detailSlice'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import { listProps, movieProps } from '../../pages/Favorite'
 
-type gridCardProps = {
-  movie: selectedMovieProps[]
-}
-
-const GridCard: React.FC<gridCardProps> = ({ movie }) => {
+const GridCard: React.FC<listProps> = ({ movie }) => {
   const filtering = useSelector(
     (filterState: RootState) => filterState.ft.filter,
   )
-  const [sortMovie, setSortMovie] = useState<selectedMovieProps[]>(movie)
+  const [sortMovie, setSortMovie] = useState<movieProps[]>(movie)
   const now = new Date()
   const current = `${now.getFullYear()}-${
     now.getMonth() + 1 > 9 ? now.getMonth() + 1 : `0${now.getMonth() + 1}`
@@ -46,16 +42,15 @@ const GridCard: React.FC<gridCardProps> = ({ movie }) => {
         setSortMovie(movie)
         break
       case 5:
-        console.log('아직')
+        movie = [...movie].sort((a, b) => b.addTime - a.addTime)
+        setSortMovie(movie)
+        break
     }
   }
 
   useEffect(() => {
     reSort(filtering)
-  }, [filtering])
-
-  console.log(sortMovie)
-  console.log(filtering)
+  }, [movie, filtering])
 
   return (
     <div className="py-10 grid grid-cols-3 place-items-center gap-4">
