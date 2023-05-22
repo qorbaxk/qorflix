@@ -5,7 +5,7 @@ export interface filterState {
 }
 
 const initialState: filterState = {
-  filter: 1,
+  filter: 5,
 }
 
 export const filterSlice = createSlice({
