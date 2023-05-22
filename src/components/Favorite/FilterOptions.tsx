@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getFilter } from '../../redux/slice/filterSlice'
+import { RootState } from '../../redux/store'
 
 const FilterOptions: React.FC = () => {
   const data = [
@@ -11,8 +12,11 @@ const FilterOptions: React.FC = () => {
     { id: 5, label: '최근에 담은 순' },
   ]
 
+  const filtering = useSelector(
+    (filterState: RootState) => filterState.ft.filter,
+  )
   const [isOpen, setOpen] = useState(false)
-  const [selectedItem, setSelectedItem] = useState<number>(1)
+  const [selectedItem, setSelectedItem] = useState<number>(filtering)
   const dispatch = useDispatch()
   const toggleDropdown = () => setOpen(!isOpen)
 
