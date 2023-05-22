@@ -32,28 +32,30 @@ export interface reviewProps {
   updated_at: string
   url: string
 }
+
+export interface selectedMovieProps {
+  adult: boolean
+  backdrop_path: string
+  budget: number
+  genres: genreProps[]
+  id: number
+  original_title: string
+  overview: string
+  popularity: number
+  poster_path: string
+  production_companies: companiesProps[]
+  release_date: string
+  revenue: number
+  runtime: number
+  status: string
+  tagline: string
+  title: string
+  video: boolean
+  vote_average: number
+  vote_count: number
+}
 export interface detailMovieProps {
-  selectedMovieInfo: {
-    adult: boolean
-    backdrop_path: string
-    budget: number
-    genres: genreProps[]
-    id: number
-    original_title: string
-    overview: string
-    popularity: number
-    poster_path: string
-    production_companies: companiesProps[]
-    release_date: string
-    revenue: number
-    runtime: number
-    status: string
-    tagline: string
-    title: string
-    video: boolean
-    vote_average: number
-    vote_count: number
-  }
+  selectedMovieInfo: selectedMovieProps
   trailerMovieInfo: trailerProps[]
   reviewMovieInfo: reviewProps[]
   recommendMovieInfo: oneMovieProps[]
