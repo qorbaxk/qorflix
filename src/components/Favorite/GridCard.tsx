@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { selectedMovieProps } from '../../redux/slice/detailSlice'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 
 type gridCardProps = {
   movie: selectedMovieProps[]
 }
 
 const GridCard: React.FC<gridCardProps> = ({ movie }) => {
+  const filtering = useSelector(
+    (filterState: RootState) => filterState.ft.filter,
+  )
+  const [sortMovie, setSortMovie] = useState<selectedMovieProps[]>(movie)
   const now = new Date()
   const current = `${now.getFullYear()}-${
     now.getMonth() + 1 > 9 ? now.getMonth() + 1 : `0${now.getMonth() + 1}`
@@ -17,9 +23,43 @@ const GridCard: React.FC<gridCardProps> = ({ movie }) => {
     navigate(`/movies/${id}`)
   }
 
+  const reSort = (filtering: number) => {
+    switch (filtering) {
+      case 1:
+        movie = [...movie].sort()
+        setSortMovie(movie)
+        break
+      case 2:
+        movie = [...movie].sort((a, b) => b.vote_average - a.vote_average)
+        setSortMovie(movie)
+        break
+      case 3:
+        movie = [...movie].sort(
+          (a, b) =>
+            new Date(b.release_date).getTime() -
+            new Date(a.release_date).getTime(),
+        )
+        setSortMovie(movie)
+        break
+      case 4:
+        movie = [...movie].sort((a, b) => b.vote_count - a.vote_count)
+        setSortMovie(movie)
+        break
+      case 5:
+        console.log('아직')
+    }
+  }
+
+  useEffect(() => {
+    reSort(filtering)
+  }, [filtering])
+
+  console.log(sortMovie)
+  console.log(filtering)
+
   return (
     <div className="py-10 grid grid-cols-3 place-items-center gap-4">
-      {movie.map(item => (
+      {sortMovie.map(item => (
         <div
           key={item.id}
           style={{

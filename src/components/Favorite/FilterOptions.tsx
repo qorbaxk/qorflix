@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { getFilter } from '../../redux/slice/filterSlice'
 
 const FilterOptions: React.FC = () => {
   const data = [
@@ -11,11 +13,12 @@ const FilterOptions: React.FC = () => {
 
   const [isOpen, setOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState<number>(1)
-
+  const dispatch = useDispatch()
   const toggleDropdown = () => setOpen(!isOpen)
 
   const handleItemClick = (id: number) => {
     selectedItem == id ? setSelectedItem(1) : setSelectedItem(id)
+    dispatch(getFilter(id))
     setOpen(false)
   }
 
