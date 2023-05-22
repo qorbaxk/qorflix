@@ -3,6 +3,7 @@ import { collection, onSnapshot, query } from 'firebase/firestore'
 import { dbService } from '../firebase-config'
 import { getAuth } from 'firebase/auth'
 import GridCard from '../components/Favorite/GridCard'
+import FilterOptions from '../components/Favorite/FilterOptions'
 
 type listProps = { id: string }[]
 
@@ -29,6 +30,7 @@ const Favorite = () => {
   return (
     <div className="baseColor baseContainer px-32">
       <h2 className="a11y-hidden">찜한 영화</h2>
+      <FilterOptions/>
       <GridCard movie={myLists} />
     </div>
   )
