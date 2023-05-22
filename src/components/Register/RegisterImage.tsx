@@ -57,8 +57,8 @@ const RegisterImage: React.FC = () => {
           alt="Avatar"
           className={`${
             photo
-              ? `w-full h-full`
-              : `w-8 h-8 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] object-cover object-center `
+              ? `w-full h-full object-cover object-center `
+              : `w-8 h-8 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]`
           } rounded-full`}
         />
       </label>
