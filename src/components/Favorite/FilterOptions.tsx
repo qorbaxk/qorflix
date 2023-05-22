@@ -21,7 +21,7 @@ const FilterOptions: React.FC = () => {
   const toggleDropdown = () => setOpen(!isOpen)
 
   const handleItemClick = (id: number) => {
-    selectedItem == id ? setSelectedItem(1) : setSelectedItem(id)
+    selectedItem == id ? setSelectedItem(5) : setSelectedItem(id)
     dispatch(getFilter(id))
     setOpen(false)
   }
