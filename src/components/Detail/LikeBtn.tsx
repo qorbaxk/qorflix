@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { selectedMovieProps } from '../../redux/slice/detailSlice'
 
 import { setDoc, doc, deleteDoc, getDoc } from 'firebase/firestore'
@@ -14,11 +14,13 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
   const [like, setLike] = useState<boolean>(false)
 
   const addBtn = async () => {
+    const now = new Date().getTime()
+    const listObj = { ...movieObj, addTime: now }
     setLike(true)
     if (auth.currentUser) {
       await setDoc(
         doc(dbService, auth.currentUser.uid, movieObj.title),
-        movieObj,
+        listObj,
       )
       console.log('추가')
     }
@@ -30,6 +32,23 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
       console.log('삭제')
     }
   }
+
+  const existLikeList = async () => {
+    if (auth.currentUser) {
+      const userRef = doc(dbService, auth.currentUser.uid, movieObj.title)
+      const userSnap = await getDoc(userRef)
+
+      if (userSnap.exists()) {
+        setLike(true)
+      } else {
+        setLike(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    existLikeList()
+  })
 
   return (
     <>
