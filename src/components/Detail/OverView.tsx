@@ -4,14 +4,11 @@ import { RootState } from '../../redux/store'
 import Anchor from './Anchor'
 import LikeBtn from './LikeBtn'
 import ShareBtn from './ShareBtn'
-import ReviewBtn from './ReviewBtn'
 
 const OverView: React.FC = () => {
   const detail = useSelector(
     (detailState: RootState) => detailState.dt.selectedMovieInfo,
   )
-
-  console.log(detail)
 
   return (
     <div className="px-32 mx-auto pt-8">
