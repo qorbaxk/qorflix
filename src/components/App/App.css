@@ -86,6 +86,12 @@
   border: none !important;
   border-radius: 0 !important;
 }
+.multi-range-slider .thumb-right::before{
+  right:7px !important;
+}
+.multi-range-slider .thumb-left::before{
+  left:7px !important;
+}
 .multi-range-slider .bar *{
   border-radius: 0 !important;
 }
