@@ -76,3 +76,16 @@
     --swiper-pagination-bullet-vertical-gap: 6px;
   }
 }
+
+/* 슬라이더 스타일 재적용 */
+.multi-range-slider .thumb .caption * {
+  background-color: #e50914 !important;
+}
+.multi-range-slider .thumb::before {
+  margin: -6px !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+.multi-range-slider .bar *{
+  border-radius: 0 !important;
+}
