@@ -6,7 +6,7 @@ import { getSorting } from '../../redux/slice/filterSlice'
 const SortOptions = () => {
   const data = [
     { id: 'revenue.desc', label: '수익 높은 순' },
-    { id: 'popularity.desc', label: '인기 높은 순' },
+    { id: 'popularity.desc', label: '최근 인기 높은 순' },
     { id: 'vote_count.desc', label: '평가 수 많은 순' },
   ]
 
@@ -21,8 +21,6 @@ const SortOptions = () => {
     dispatch(getSorting(id))
     setOpen(false)
   }
-
-  console.log(sorting)
 
   return (
     <div className="w-full mt-8 border-t-2 border-white">
@@ -41,7 +39,7 @@ const SortOptions = () => {
           ></img>
         </div>
         <div
-          className={`p-1 border-t-2 border-solid border-[#E5E8EC] w-full rounded-b-xl ${
+          className={`p-1 border-t-2 border-solid border-[#E5E8EC] w-full rounded-b-xl bg-neutral-800 ${
             isOpen ? 'block' : 'hidden'
           }`}
         >
