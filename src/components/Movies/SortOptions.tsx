@@ -24,43 +24,41 @@ const SortOptions = () => {
 
   return (
     <div className="w-full mt-8 border-t-2 border-white">
-      <div className="rounded-xl shadow-[0 10px 25px rgba(0,0,0,.1)] relative">
-        <div
-          className="p-4 cursor-pointer flex justify-between items-center"
-          onClick={toggleDropdown}
-        >
-          {selectedItem
-            ? `${data.find(item => item.id == selectedItem)?.label}`
-            : '선택한 항목이 없습니다.'}
-          <img
-            src="/src/assets/Arrow.svg"
-            width={20}
-            className={`transition-all ${isOpen ? 'rotate-90' : 'rotate-0'}`}
-          ></img>
-        </div>
-        <div
-          className={`p-1 border-t-2 border-solid border-[#E5E8EC] w-full rounded-b-xl bg-neutral-800 ${
-            isOpen ? 'block' : 'hidden'
-          }`}
-        >
-          {data.map(item => (
-            <div
-              className="p-2.5 cursor-pointer"
-              onClick={() => handleItemClick(item.id)}
-              id={item.id}
-              key={item.label}
+      <div
+        className="p-4 cursor-pointer flex justify-between items-center"
+        onClick={toggleDropdown}
+      >
+        {selectedItem
+          ? `${data.find(item => item.id == selectedItem)?.label}`
+          : '선택한 항목이 없습니다.'}
+        <img
+          src="/src/assets/Arrow.svg"
+          width={20}
+          className={`transition-all ${isOpen ? 'rotate-90' : 'rotate-0'}`}
+        ></img>
+      </div>
+      <div
+        className={`p-1 border-t-2 border-solid border-[#E5E8EC] w-full bg-neutral-800 ${
+          isOpen ? 'block' : 'hidden'
+        }`}
+      >
+        {data.map(item => (
+          <div
+            className="p-2.5 cursor-pointer"
+            onClick={() => handleItemClick(item.id)}
+            id={item.id}
+            key={item.label}
+          >
+            <span
+              className={`text-[#e50914] transition-all ${
+                item.id == selectedItem ? 'opacity-100' : 'opacity-0'
+              }`}
             >
-              <span
-                className={`text-[#e50914] transition-all ${
-                  item.id == selectedItem ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                •{' '}
-              </span>
-              {item.label}
-            </div>
-          ))}
-        </div>
+              •{' '}
+            </span>
+            {item.label}
+          </div>
+        ))}
       </div>
     </div>
   )
