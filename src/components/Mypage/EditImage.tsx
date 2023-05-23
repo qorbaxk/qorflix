@@ -1,11 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { auth } from '../../firebase-config'
 
-const EditImage:React.FC = () => {
-  const { photoURL } = useSelector(
-    (userState: RootState) => userState.lg.userGroup,
-  )
+const EditImage: React.FC = () => {
+  const user = auth.currentUser
 
   const onUpdatePhoto = () => {
     console.log('업데이트')
@@ -18,11 +15,13 @@ const EditImage:React.FC = () => {
           htmlFor="file-input"
           className="border border-4 border-white rounded-full cursor-pointer mb-4 absolute"
         >
-          <img
-            src={photoURL}
-            alt="Avatar"
-            className="rounded-full w-full h-full object-contain"
-          />
+          {user?.photoURL && (
+            <img
+              src={user.photoURL}
+              alt="Avatar"
+              className="rounded-full w-full h-full object-contain"
+            />
+          )}
         </label>
         <input
           id="file-input"
