@@ -18,6 +18,10 @@ const Movies: React.FC = () => {
     (loadingState: RootState) => loadingState.ld.loading,
   )
   const sorting = useSelector((filterState: RootState) => filterState.ft.sort)
+
+  const years = useSelector(
+    (filterState: RootState) => filterState.ft.yearGroup,
+  )
   const page = useSelector((pageState: RootState) => pageState.pg.page)
   const keyword = useSelector((searchState: RootState) => searchState.sh.search)
 
@@ -28,7 +32,7 @@ const Movies: React.FC = () => {
     dispatch(trueLoading())
 
     const allTimeMovieApi = api.get(
-      `/discover/movie?api_key=${API_KEY}&language=ko-KR&sort_by=${sorting}&include_adult=true&include_video=false&page=${page}`,
+      `/discover/movie?api_key=${API_KEY}&language=ko-KR&sort_by=${sorting}&primary_release_date.gte=${years.minYear}-01-01&primary_release_date.lte=${years.maxYear}-12-31&include_adult=true&include_video=false&page=${page}`,
     )
     const genreApi = api.get(
       `/genre/movie/list?api_key=${API_KEY}&language=ko-KR`,
@@ -66,7 +70,7 @@ const Movies: React.FC = () => {
   useEffect(() => {
     getAllMovies()
     window.scrollTo(0, 0)
-  }, [page, keyword, sorting])
+  }, [page, keyword, sorting, years.maxYear, years.minYear])
 
   if (loading) {
     return (
