@@ -4,6 +4,9 @@ import { selectedMovieProps } from '../../redux/slice/detailSlice'
 import { setDoc, doc, deleteDoc, getDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { dbService } from '../../firebase-config'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import Alert from '../Navigation/Alert'
 
 type LikeBtnProps = {
   movieObj: selectedMovieProps
@@ -12,17 +15,28 @@ type LikeBtnProps = {
 const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
   const auth = getAuth()
   const [like, setLike] = useState<boolean>(false)
+  const [alert, setAlert] = useState(false)
+  const isLoggedIn = useSelector(
+    (userState: RootState) => userState.lg.isLoggedIn,
+  )
 
   const addBtn = async () => {
-    const now = new Date().getTime()
-    const listObj = { ...movieObj, addTime: now }
-    setLike(true)
-    if (auth.currentUser) {
-      await setDoc(
-        doc(dbService, auth.currentUser.uid, movieObj.title),
-        listObj,
-      )
-      console.log('추가')
+    if (isLoggedIn === false) {
+      setAlert(true)
+      setTimeout(() => {
+        setAlert(false)
+      }, 1000)
+    } else {
+      const now = new Date().getTime()
+      const listObj = { ...movieObj, addTime: now }
+      setLike(true)
+      if (auth.currentUser) {
+        await setDoc(
+          doc(dbService, auth.currentUser.uid, movieObj.title),
+          listObj,
+        )
+        console.log('추가')
+      }
     }
   }
   const deleteBtn = async () => {
@@ -71,6 +85,7 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
           </button>
         )}
         <p className="text-sm text-neutral-400 ">찜한 콘텐츠</p>
+      {alert ? <Alert text="로그인시 이용 가능 합니다." /> : ''}
       </div>
     </>
   )
