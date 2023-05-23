@@ -9,6 +9,9 @@ import { RootState } from '../redux/store'
 import { ClipLoader } from 'react-spinners'
 import { genreProps } from '../redux/slice/movieSlice'
 import { falseLoading, trueLoading } from '../redux/slice/loadingSlice'
+import { naviProps } from '../components/Navigation/Navigation'
+import { useNavigate } from 'react-router-dom'
+import Alert from '../components/Navigation/Alert'
 
 export type movieProps = {
   id: number
@@ -32,8 +35,9 @@ export type listProps = {
   movie: movieProps[]
 }
 
-const Favorite = () => {
+const Favorite: React.FC<naviProps> = ({ isLoggedIn }) => {
   const auth = getAuth()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const loading = useSelector(
     (loadingState: RootState) => loadingState.ld.loading,
@@ -53,9 +57,25 @@ const Favorite = () => {
   }
 
   useEffect(() => {
+    if (isLoggedIn === false) {
+      setTimeout(() => {
+        navigate('/login')
+      }, 2000)
+    }
     dispatch(trueLoading())
     getList()
   }, [])
+
+  if (isLoggedIn === false) {
+    return (
+      <div className="baseColor baseContainer px-32">
+        <Alert
+          text="로그인시 이용 가능 합니다.
+        2초 뒤 로그인 페이지로 이동합니다."
+        />
+      </div>
+    )
+  }
 
   if (loading) {
     return (

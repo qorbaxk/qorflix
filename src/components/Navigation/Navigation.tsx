@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { getReset } from '../../redux/slice/filterSlice'
 import { getSearchReset } from '../../redux/slice/searchSlice'
 
-type naviProps = {
+export type naviProps = {
   isLoggedIn: boolean
 }
 

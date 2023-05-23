@@ -56,7 +56,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/favorite" element={<Favorite />} />
+        <Route
+          path="/favorite"
+          element={<Favorite isLoggedIn={isLoggedIn} />}
+        />
         <Route path="/movies/:id" element={<Detail />} />
       </Routes>
     </>
