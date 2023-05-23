@@ -96,7 +96,6 @@ const OverView: React.FC = () => {
           <div className="flex flex-row justify-start gap-8">
             <LikeBtn movieObj={detail} />
             <ShareBtn />
-            {/* <ReviewBtn /> */}
           </div>
           <Anchor />
         </figcaption>
