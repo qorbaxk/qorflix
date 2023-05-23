@@ -24,7 +24,7 @@ const Unsubscribing = () => {
         role="button"
         onClick={gotoUnSub}
         aria-label="회원탈퇴하기"
-        className="cursor-pointer w-96 h-14 bg-zinc-400 "
+        className="cursor-pointer w-96 h-10 bg-zinc-400 "
       >
         회원탈퇴
       </button>

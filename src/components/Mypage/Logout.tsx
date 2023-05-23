@@ -21,7 +21,7 @@ const Logout:React.FC = () => {
         role="button"
         onClick={gotoLogout}
         aria-label="로그아웃 하기"
-        className="cursor-pointer w-96 h-14 bg-primary-100 "
+        className="cursor-pointer w-96 h-10 bg-primary-100 "
       >
         로그아웃
       </button>
