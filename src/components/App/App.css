@@ -1,0 +1,97 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .baseColor {
+    @apply bg-black text-white;
+  }
+  .baseContainer {
+    @apply min-h-screen h-full max-w-scr mx-auto;
+  }
+
+  .bannerFilm {
+    @apply before:absolute before:left-2/4 before:translate-x-[-50%] before:w-full before:max-w-scr before:h-full before:min-h-[600px] before:content-[''] before:bg-gradient-to-t before:from-black before:to-transparent before:mt-[100px];
+  }
+
+  .dotAfter {
+    @apply after:content-['·'] after:ml-2;
+  }
+  .dotAfter:last-child::after {
+    content: '';
+    margin: 0;
+  }
+  .lineAfter {
+    @apply after:content-['｜'] after:mx-2;
+  }
+
+  .active {
+    @apply text-white font-bold;
+  }
+  .unActive {
+    @apply text-neutral-400 font-light;
+  }
+  .underBar {
+    @apply after:content-[''] after:block after:h-1 after:bg-primary-100 after:w-full after:absolute after:bottom-[-2] after:left-0;
+  }
+
+  .pageStyle {
+    @apply mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-zinc-400 bg-transparent p-0 text-sm text-zinc-400 transition duration-150 ease-in-out;
+  }
+  .activePageStyle {
+    @apply bg-primary-100 p-0 text-white shadow-md border-primary-100;
+  }
+
+  .pagination {
+    @apply flex flex-row justify-center gap-2;
+  }
+  ul.pagination li {
+    @apply border border-2 rounded-full border-zinc-400 px-4 py-2 cursor-pointer;
+  }
+  ul.pagination li.active {
+    @apply bg-primary-100 border-primary-100;
+  }
+
+  .a11y-hidden {
+    background-color: red;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+
+  :root {
+    --swiper-pagination-color: #e50914;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-width: 8px;
+    --swiper-pagination-bullet-height: 8px;
+    --swiper-pagination-bullet-inactive-color: #999999;
+    --swiper-pagination-bullet-inactive-opacity: 0.2;
+    --swiper-pagination-bullet-opacity: 1;
+    --swiper-pagination-bullet-horizontal-gap: 4px;
+    --swiper-pagination-bullet-vertical-gap: 6px;
+  }
+}
+
+/* 슬라이더 스타일 재적용 */
+.multi-range-slider .thumb .caption * {
+  background-color: #e50914 !important;
+}
+.multi-range-slider .thumb::before {
+  margin: -6px !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+.multi-range-slider .thumb-right::before{
+  right:7px !important;
+}
+.multi-range-slider .thumb-left::before{
+  left:7px !important;
+}
+.multi-range-slider .bar *{
+  border-radius: 0 !important;
+}
