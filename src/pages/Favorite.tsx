@@ -10,7 +10,7 @@ import { ClipLoader } from 'react-spinners'
 import { genreProps } from '../redux/slice/movieSlice'
 import { falseLoading, trueLoading } from '../redux/slice/loadingSlice'
 import { naviProps } from '../components/Navigation/Navigation'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Alert from '../components/Navigation/Alert'
 
 export type movieProps = {
@@ -93,8 +93,18 @@ const Favorite: React.FC<naviProps> = ({ isLoggedIn }) => {
   return (
     <div className="baseColor baseContainer px-32">
       <h2 className="a11y-hidden">찜한 영화</h2>
-      <FilterOptions />
-      <GridCard movie={myLists} />
+      {myLists.length > 0 ? (
+        <>
+          <FilterOptions />
+          <GridCard movie={myLists} />
+        </>
+      ) : (
+        <div className="w-full text-left pt-16 text-xl">
+          <Link to="/movies" className="underline underline-offset-8 cursor-pointer transition-all hover:text-primary-100">
+            아직 담은 영화가 없어요! 좋아하는 영화를 추가해보세요!
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
