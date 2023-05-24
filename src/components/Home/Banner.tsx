@@ -27,7 +27,7 @@ const Banner: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-32">
+        <div className="flex flex-col items-start justify-end gap-4 z-[1] h-[600px] text-white w-full px-32 pb-16">
           <p
             className="block w-full text-5xl font-bold"
             role="text"
