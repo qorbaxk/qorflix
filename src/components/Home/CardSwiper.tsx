@@ -4,7 +4,7 @@ import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 
-import { EffectCoverflow, Pagination } from 'swiper'
+// import { EffectCoverflow, Pagination } from 'swiper'
 import CardInner from './CardInner'
 
 export interface SwiperMovieProps {
@@ -46,7 +46,7 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
         centeredSlidesBounds={true}
         loop={true}
         pagination={true}
-        modules={[EffectCoverflow, Pagination]}
+        // modules={[EffectCoverflow, Pagination]}
         style={{
           width: '100%',
           paddingTop: '50px',
@@ -60,6 +60,7 @@ const CardSwiper: React.FC<SwiperState> = ({ movies }) => {
               backgroundSize: 'cover',
               width: '300px',
               height: '300px',
+              margin:'16px'
             }}
             key={item.id}
           >
