@@ -13,13 +13,15 @@ const OverView: React.FC = () => {
   return (
     <div className="px-32 mx-auto pt-8">
       <h2 className="a11y-hidden">선택한 영화</h2>
-      <figure className="flex flex-row  justify-center gap-16">
+      <figure className="flex flex-row  justify-center items-start gap-16">
         <img
           src={`https://image.tmdb.org/t/p/original//${detail.poster_path}`}
           alt={`${detail.title} 포스터`}
           width={500}
+          height={888}
           style={{
-            maxHeight: '750px',
+            objectFit: 'contain',
+            objectPosition: 'center',
           }}
         />
         <figcaption className="grow flex flex-col justify-start gap-8 relative">
