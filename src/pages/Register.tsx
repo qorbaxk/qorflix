@@ -32,7 +32,7 @@ const Register: React.FC = () => {
   const userGroup = useSelector(
     (userState: RootState) => userState.lg.userGroup,
   )
-  const { uid, photoName, photoURL } = useSelector(
+  const { photoName, photoURL } = useSelector(
     (userState: RootState) => userState.lg.userGroup,
   )
 
@@ -97,7 +97,10 @@ const Register: React.FC = () => {
       message: string
     }
 
-    const imgRef = ref(storageService, `userImg/${uid}/${photoName}`)
+    const imgRef = ref(
+      storageService,
+      `userImg/base/${email.split('@')[0]}/${photoName}`,
+    )
     const response = await uploadString(imgRef, photoURL, 'data_url')
     const imgUrl = await getDownloadURL(response.ref)
     Promise.all([response, imgUrl])
