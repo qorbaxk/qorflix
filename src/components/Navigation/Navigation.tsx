@@ -49,20 +49,19 @@ const Navigation: React.FC<naviProps> = ({ isLoggedIn }) => {
           </Link>
         </div>
         <div>
-          {isLoggedIn && user?.displayName ? (
+          {isLoggedIn && user?.displayName && user?.photoURL ? (
             <Link
               to="/mypage"
               aria-label="마이페이지 가기"
               className="cursor-pointer flex flex-row gap-2 items-center"
               onClick={filterReset}
             >
-              {user.photoURL && (
-                <img
-                  src={user.photoURL}
-                  alt="프로필 사진"
-                  className="rounded-full w-6 h-6 object-cover object-center"
-                />
-              )}
+              <img
+                src={user.photoURL}
+                alt="프로필 사진"
+                className="rounded-full w-6 h-6 object-cover object-center"
+              />
+
               <span>{`${user.displayName} 님`}</span>
             </Link>
           ) : (
