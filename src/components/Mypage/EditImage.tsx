@@ -19,15 +19,22 @@ const EditImage: React.FC = () => {
             <img
               src={user.photoURL}
               alt="Avatar"
-              className="rounded-full w-full h-full object-contain"
+              className="rounded-full w-full h-full object-contain opacity-70"
             />
           )}
+          <img
+            src="/src/assets/Camera.svg"
+            width={30}
+            alt=""
+            className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer"
+          />
         </label>
         <input
           id="file-input"
           type="file"
           style={{ display: 'none' }}
           onChange={onUpdatePhoto}
+          className="z-30"
         />
       </div>
     </>
