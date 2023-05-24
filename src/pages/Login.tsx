@@ -104,7 +104,7 @@ const Login: React.FC = () => {
           name="google"
           className="p-2"
         >
-          <img width={30} src="/src/assets/Google.svg" alt="구글 아이콘" />
+          <img width={30} src="/Google.svg" alt="구글 아이콘" />
         </button>
         <button
           role="submit"
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
           name="github"
           className="p-2"
         >
-          <img width={30} src="/src/assets/Github.svg" alt="깃허브 아이콘" />
+          <img width={30} src="/Github.svg" alt="깃허브 아이콘" />
         </button>
       </div>
       <div className="w-96 flex flex-row justify-between text-xs text-zinc-200">

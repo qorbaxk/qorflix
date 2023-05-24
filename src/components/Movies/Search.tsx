@@ -33,7 +33,7 @@ const Search: React.FC = () => {
           <img
             aria-hidden
             width={25}
-            src="/src/assets/Search.svg"
+            src="/Search.svg"
             alt="돋보기 이미지"
           />
         </button>

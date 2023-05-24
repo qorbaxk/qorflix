@@ -65,7 +65,7 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
                 <div
                   aria-hidden
                   style={{
-                    backgroundImage: 'url(/src/assets/Poster.svg)',
+                    backgroundImage: 'url(/Poster.svg)',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     width: '80px',
@@ -119,7 +119,7 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
                   <img
                     aria-hidden
                     width={25}
-                    src="/src/assets/Star.svg"
+                    src="/Star.svg"
                     alt="별점 이미지"
                   />
                   <span className="text-lg" role="text" aria-label="별점">
@@ -132,7 +132,7 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
                 <img
                   aria-hidden
                   width={25}
-                  src="/src/assets/User.svg"
+                  src="/User.svg"
                   alt="유저 이미지"
                 />
                 <span className="text-lg" role="text">

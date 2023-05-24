@@ -66,7 +66,7 @@ const EditImage: React.FC = () => {
           )}
           <img
             aria-hidden
-            src="/src/assets/Camera.svg"
+            src="/Camera.svg"
             width={30}
             alt="카메라 아이콘"
             className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer"

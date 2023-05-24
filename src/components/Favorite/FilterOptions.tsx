@@ -40,7 +40,7 @@ const FilterOptions: React.FC = () => {
             : '선택한 항목이 없습니다.'}
           <img
             aria-hidden
-            src="/src/assets/Arrow.svg"
+            src="/Arrow.svg"
             width={20}
             className={`transition-all ${isOpen ? 'rotate-90' : 'rotate-0'}`}
           />

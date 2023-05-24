@@ -36,7 +36,7 @@ const SortOptions: React.FC = () => {
         <img
           aria-hidden
           alt="화살표 아이콘"
-          src="/src/assets/Arrow.svg"
+          src="/Arrow.svg"
           width={20}
           className={`transition-all ${isOpen ? 'rotate-90' : 'rotate-0'}`}
         ></img>

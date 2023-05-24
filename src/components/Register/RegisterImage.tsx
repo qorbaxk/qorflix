@@ -53,7 +53,7 @@ const RegisterImage: React.FC = () => {
         className="border border-4 border-white w-32 h-32 rounded-full cursor-pointer relative mb-4"
       >
         <img
-          src={photo ? photo : `/src/assets/Camera.svg`}
+          src={photo ? photo : `/Camera.svg`}
           alt="프로필 사진"
           className={`${
             photo

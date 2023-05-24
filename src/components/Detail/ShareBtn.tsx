@@ -7,7 +7,7 @@ const ShareBtn: React.FC = () => {
         <button type="button" aria-label="공유하기 버튼">
           <img
             width={35}
-            src="/src/assets/ShareBtn.svg"
+            src="/ShareBtn.svg"
             alt="공유하기 버튼 아이콘"
           />
         </button>

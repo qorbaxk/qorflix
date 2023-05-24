@@ -29,7 +29,7 @@ const Navigation: React.FC<naviProps> = ({ isLoggedIn }) => {
             onClick={filterReset}
           >
             <h1>
-              <img src="/src/assets/Logo.svg" alt="넷플릭스 메인 로고" />
+              <img src="/Logo.svg" alt="넷플릭스 메인 로고" />
             </h1>
           </Link>
           <Link

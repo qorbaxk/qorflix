@@ -40,7 +40,7 @@ const ReviewCard: React.FC = () => {
               <img
                 width={25}
                 height={25}
-                src="/src/assets/Person.svg"
+                src="/Person.svg"
                 alt="기본 인물 이미지"
               />
             )}
@@ -95,7 +95,7 @@ const ReviewCard: React.FC = () => {
                   <img
                     width={25}
                     height={25}
-                    src="/src/assets/Person.svg"
+                    src="/Person.svg"
                     alt="기본 인물 이미지"
                   />
                 )}

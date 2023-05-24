@@ -25,7 +25,7 @@ const DirectorCard: React.FC<DirectorProps> = ({ director }) => {
               style={{
                 objectFit: 'cover',
               }}
-              src="/src/assets/Person.svg"
+              src="/Person.svg"
               alt="기본 인물 이미지"
             />
           </div>

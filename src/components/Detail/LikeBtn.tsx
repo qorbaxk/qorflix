@@ -70,7 +70,7 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
           <button onClick={deleteBtn}>
             <img
               width={35}
-              src="/src/assets/CheckBtn.svg"
+              src="/CheckBtn.svg"
               alt="찜한 상태 버튼"
             />
           </button>
@@ -78,7 +78,7 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
           <button onClick={addBtn}>
             <img
               width={35}
-              src="/src/assets/EmptyBtn.svg"
+              src="/EmptyBtn.svg"
               alt="찜하지 않은 상태 버튼"
             />
           </button>

@@ -19,7 +19,7 @@ const GenreFilter: React.FC = () => {
         <p>장르 선택</p>
         <img
           aria-hidden
-          src="/src/assets/Arrow.svg"
+          src="/Arrow.svg"
           width={20}
           alt="화살표 아이콘"
           className={`transition-all ${isOpen ? 'rotate-90' : 'rotate-0'}`}

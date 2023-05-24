@@ -49,7 +49,7 @@ const OverView: React.FC = () => {
               <img
                 aria-hidden
                 width={35}
-                src="/src/assets/Star.svg"
+                src="/Star.svg"
                 alt="별점 이미지"
               />
             </div>
