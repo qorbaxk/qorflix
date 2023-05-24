@@ -6,7 +6,7 @@ const Search: React.FC = () => {
   const [text, setText] = useState('')
   const dispatch = useDispatch()
 
-  const gotoSearch = (e: any) => {
+  const gotoSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(getSearch(text))
   }

@@ -5,7 +5,7 @@ import { deleteUser } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { getLoggedOut, resetUser } from '../../redux/slice/userSlice'
 
-const Unsubscribing = () => {
+const Unsubscribing: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const gotoUnSub = () => {
@@ -21,7 +21,7 @@ const Unsubscribing = () => {
   return (
     <div>
       <button
-        role="button"
+        role="submit"
         onClick={gotoUnSub}
         aria-label="회원탈퇴하기"
         className="cursor-pointer w-96 h-10 bg-zinc-400 "

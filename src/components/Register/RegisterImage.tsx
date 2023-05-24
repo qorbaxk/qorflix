@@ -54,7 +54,7 @@ const RegisterImage: React.FC = () => {
       >
         <img
           src={photo ? photo : `/src/assets/Camera.svg`}
-          alt="Avatar"
+          alt="프로필 사진"
           className={`${
             photo
               ? `w-full h-full object-cover object-center `

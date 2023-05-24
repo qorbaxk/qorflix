@@ -28,11 +28,15 @@ const RangeSlider: React.FC = () => {
   return (
     <div className="w-full border-t-2 border-white">
       <div
+        role="button"
+        aria-label="드롭다운 버튼"
         className="p-4 cursor-pointer flex justify-between items-center"
         onClick={toggleDropdown}
       >
         <p>개봉년도 범위</p>
         <img
+          aria-hidden
+          alt="화살표 아이콘"
           src="/src/assets/Arrow.svg"
           width={20}
           className={`transition-all ${isOpen ? 'rotate-90' : 'rotate-0'}`}
@@ -42,11 +46,19 @@ const RangeSlider: React.FC = () => {
         className={`multi-range-slider-container border-b-2 border-solid border-[#E5E8EC]
       ${isOpen ? 'block' : 'hidden'} `}
       >
-        <div className="flex flex-row justify-center items-center">
-          <span className="text-lg font-bold">{minValue}</span>
+        <div
+          role="text"
+          aria-label="현재 선택한 년도 범위"
+          className="flex flex-row justify-center items-center"
+        >
+          <span role="text" aria-label="최소" className="text-lg font-bold">
+            {minValue}
+          </span>
           <span className="text-sm">년</span>
-          <span className="mx-6 block w-4 h-[1px] bg-white"></span>
-          <span className="text-lg font-bold">{maxValue}</span>
+          <span aria-hidden className="mx-6 block w-4 h-[1px] bg-white"></span>
+          <span role="text" aria-label="최대" className="text-lg font-bold">
+            {maxValue}
+          </span>
           <span className="text-sm">년</span>
         </div>
         <MultiRangeSlider
@@ -69,6 +81,7 @@ const RangeSlider: React.FC = () => {
         ></MultiRangeSlider>
         <div className="flex flex-row justify-center">
           <button
+            type="submit"
             className="my-4 px-16 py-1 text-center bg-neutral-800 text-sm hover:bg-primary-100"
             onClick={yearSubmit}
           >

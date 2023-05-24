@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 import { selectedMovieProps } from '../../redux/slice/detailSlice'
 
 import { setDoc, doc, deleteDoc, getDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { dbService } from '../../firebase-config'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+
 import Alert from '../Navigation/Alert'
 
 type LikeBtnProps = {
@@ -35,7 +36,6 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
           doc(dbService, auth.currentUser.uid, movieObj.title),
           listObj,
         )
-        console.log('추가')
       }
     }
   }
@@ -43,7 +43,6 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
     setLike(false)
     if (auth.currentUser) {
       await deleteDoc(doc(dbService, auth.currentUser.uid, movieObj.title))
-      console.log('삭제')
     }
   }
 
@@ -85,7 +84,7 @@ const LikeBtn: React.FC<LikeBtnProps> = ({ movieObj }) => {
           </button>
         )}
         <p className="text-sm text-neutral-400 ">찜한 콘텐츠</p>
-      {alert ? <Alert text="로그인시 이용 가능 합니다." /> : ''}
+        {alert ? <Alert text="로그인시 이용 가능 합니다." /> : ''}
       </div>
     </>
   )

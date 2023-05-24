@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import { crewProps } from '../../redux/slice/creditSlice'
 import CastCard from './CastCard'
 import DirectorCard from './DirectorCard'
-import { crewProps } from '../../redux/slice/creditSlice'
 
 const SubOverview: React.FC = () => {
   const detail = useSelector(

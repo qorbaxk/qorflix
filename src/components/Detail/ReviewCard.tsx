@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { RootState } from '../../redux/store'
 import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { reviewProps } from '../../redux/slice/detailSlice'
+
 import moment from 'moment'
 import 'moment/locale/ko'
-import { reviewProps } from '../../redux/slice/detailSlice'
 
 const ReviewCard: React.FC = () => {
   const [selected, setSelected] = useState<reviewProps>()

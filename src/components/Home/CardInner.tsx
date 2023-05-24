@@ -22,9 +22,15 @@ const CardInner: React.FC<CardInnerProps> = ({ item }) => {
   }
 
   return (
-    <div onClick={gotoDetail} className="rounded-xl bg-black cursor-pointer">
+    <div
+      role="button"
+      aria-label="영화 세부 정보 보러가기"
+      onClick={gotoDetail}
+      className="rounded-xl bg-black cursor-pointer"
+    >
       <figure>
         <img
+          aria-hidden
           style={{
             width: '100%',
             height: '168.75px',
@@ -42,7 +48,9 @@ const CardInner: React.FC<CardInnerProps> = ({ item }) => {
         />
         <figcaption className="flex flex-col gap-1 justify-center px-2 pb-4">
           <h3 className="a11y-hidden">영화 제목</h3>
-          <p className="text-lg font-bold">{item.title}</p>
+          <p role="text" aria-label="제목" className="text-lg font-bold">
+            {item.title}
+          </p>
           {current < item.release_date ? (
             <p className="flex flex-row gap-2">
               <span className="text-xs font-bold p-1 rounded-lg bg-gray-500">

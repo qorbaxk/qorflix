@@ -158,6 +158,8 @@ const Register: React.FC = () => {
           required
         />
         <p
+          role="alert"
+          aria-label="에러 메세지"
           className={`${
             isEmail ? 'text-green-500' : 'text-red-500'
           } text-xs w-full text-left ml-1`}
@@ -174,6 +176,8 @@ const Register: React.FC = () => {
           required
         />
         <p
+          role="alert"
+          aria-label="에러 메세지"
           className={`${
             isPassword ? 'text-green-500' : 'text-red-500'
           } text-xs w-full text-left ml-1`}
@@ -190,6 +194,8 @@ const Register: React.FC = () => {
           required
         />
         <p
+          role="alert"
+          aria-label="에러 메세지"
           className={`${
             isPasswordConfirm ? 'text-green-500' : 'text-red-500'
           } text-xs w-full text-left ml-1`}
@@ -206,6 +212,8 @@ const Register: React.FC = () => {
           required
         />
         <p
+          role="alert"
+          aria-label="에러 메세지"
           className={`${
             isNickName ? 'text-green-500' : 'text-red-500'
           } text-xs w-full text-left ml-1`}
@@ -237,7 +245,11 @@ const Register: React.FC = () => {
           회원가입
         </button>
         {errorMsg && (
-          <span className="text-xs w-full text-center text-primary-100">
+          <span
+            role="alert"
+            aria-label="에러 메세지"
+            className="text-xs w-full text-center text-primary-100"
+          >
             {errorMsg}
           </span>
         )}

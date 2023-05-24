@@ -37,6 +37,8 @@ const Button: React.FC<BtnProps> = props => {
 
   return (
     <button
+      role="submit"
+      aria-label="장르선택"
       key={props.id}
       className={`w-fit p-4 rounded-lg font-bold border-2 border-solid border-black hover:border-white bg-gradient-to-r ${color}`}
       onClick={() => handleClickButton(props.id)}

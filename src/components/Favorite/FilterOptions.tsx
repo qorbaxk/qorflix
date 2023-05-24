@@ -30,6 +30,8 @@ const FilterOptions: React.FC = () => {
     <div className="w-full pl-12 pt-8">
       <div className="w-72 rounded-xl shadow-[0 10px 25px rgba(0,0,0,.1)] relative">
         <div
+          role="button"
+          aria-label="드롭다운 버튼 및 현재 선택되어 있는 항목"
           className="p-4 cursor-pointer flex justify-between items-center"
           onClick={toggleDropdown}
         >
@@ -37,10 +39,11 @@ const FilterOptions: React.FC = () => {
             ? `${data.find(item => item.id == selectedItem)?.label}`
             : '선택한 항목이 없습니다.'}
           <img
+            aria-hidden
             src="/src/assets/Arrow.svg"
             width={20}
             className={`transition-all ${isOpen ? 'rotate-90' : 'rotate-0'}`}
-          ></img>
+          />
         </div>
         <div
           className={`p-1 border-t-2 border-solid border-[#E5E8EC] absolute top-14 left-0 bg-black w-full rounded-b-xl ${
@@ -53,11 +56,14 @@ const FilterOptions: React.FC = () => {
               onClick={() => handleItemClick(item.id)}
               id={item.id.toString()}
               key={item.label}
+              role="button"
+              aria-label="하위 항목"
             >
               <span
                 className={`text-[#e50914] transition-all ${
                   item.id == selectedItem ? 'opacity-100' : 'opacity-0'
                 }`}
+                aria-hidden
               >
                 •{' '}
               </span>

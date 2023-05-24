@@ -25,6 +25,8 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
     <div className="grid grid-cols-2 place-items-center gap-8">
       {movie.map(item => (
         <div
+          role="button"
+          aria-label="영화 세부정보 보러가기"
           key={item.id}
           style={{
             backgroundImage: `url(${
@@ -72,8 +74,14 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
                 ></div>
               )}
               <div>
-                <p className="text-2xl">{item.title}</p>
-                <p className="ml-1 text-[#9ac7fa]">
+                <p role="text" aria-label="제목" className="text-2xl">
+                  {item.title}
+                </p>
+                <p
+                  role="text"
+                  aria-label="개봉년도"
+                  className="ml-1 text-[#9ac7fa]"
+                >
                   {item.release_date.slice(0, 4)}
                 </p>
                 <div className="flex flex-row">
@@ -91,7 +99,11 @@ const MovieCard: React.FC<movieCardProps> = ({ movie }) => {
                 </div>
               </div>
             </div>
-            <p className="text-sm text-justify w-4/6 h-[40%] overflow-hidden my-4 text-zinc-400 line-clamp-[9]">
+            <p
+              role="text"
+              aria-label="줄거리"
+              className="text-sm text-justify w-4/6 h-[40%] overflow-hidden my-4 text-zinc-400 line-clamp-[9]"
+            >
               {item.overview}
             </p>
             <div className="flex flex-col gap-3">

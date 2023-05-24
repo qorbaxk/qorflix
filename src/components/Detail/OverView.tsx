@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+
 import Anchor from './Anchor'
 import LikeBtn from './LikeBtn'
 import ShareBtn from './ShareBtn'
@@ -12,7 +13,7 @@ const OverView: React.FC = () => {
 
   return (
     <div className="px-32 mx-auto pt-8">
-      <h2 className="a11y-hidden">선택한 영화</h2>
+      <h2 className="a11y-hidden">선택한 영화 정보</h2>
       <figure className="flex flex-row  justify-center items-start gap-16">
         <img
           src={`https://image.tmdb.org/t/p/original//${detail.poster_path}`}

@@ -19,7 +19,6 @@ const NowPlaying: React.FC = () => {
     (a, b) => b.vote_average - a.vote_average,
   )
 
-  
   rateSortedMovies.unshift(rateSortedMovies.pop() as oneMovieProps)
   rateSortedMovies.unshift(rateSortedMovies.pop() as oneMovieProps)
 

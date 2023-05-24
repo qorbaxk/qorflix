@@ -13,7 +13,7 @@ const Paging: React.FC = () => {
   }
 
   return (
-    <div className='py-6'>
+    <div className="py-6">
       <Pagination
         activePage={page}
         hideDisabled={true}

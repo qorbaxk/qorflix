@@ -56,6 +56,8 @@ const GridCard: React.FC<listProps> = ({ movie }) => {
     <div className="py-10 grid grid-cols-3 place-items-center gap-4">
       {sortMovie.map(item => (
         <div
+          role="button"
+          aria-label="영화 세부 정보 보러가기"
           key={item.id}
           style={{
             backgroundImage: `url(${
@@ -74,6 +76,7 @@ const GridCard: React.FC<listProps> = ({ movie }) => {
           onClick={() => gotoDetail(item.id)}
         >
           <div
+            aria-hidden
             style={{
               background:
                 'linear-gradient(90deg, rgba(0, 0, 0, 0.8) 50%, transparent)',
@@ -103,8 +106,14 @@ const GridCard: React.FC<listProps> = ({ movie }) => {
                 ></div>
               )}
               <div>
-                <p className="text-2xl">{item.title}</p>
-                <p className="ml-1 text-[#9ac7fa]">
+                <p role="text" aria-label="제목" className="text-2xl">
+                  {item.title}
+                </p>
+                <p
+                  role="text"
+                  aria-label="개봉년도"
+                  className="ml-1 text-[#9ac7fa]"
+                >
                   {item.release_date.slice(0, 4)}
                 </p>
                 <div className="flex flex-row">
@@ -122,7 +131,11 @@ const GridCard: React.FC<listProps> = ({ movie }) => {
                 </div>
               </div>
             </div>
-            <p className="text-sm text-justify w-4/6 h-[40%] overflow-hidden my-4 text-zinc-400 line-clamp-[9]">
+            <p
+              role="text"
+              aria-label="줄거리"
+              className="text-sm text-justify w-4/6 h-[40%] overflow-hidden my-4 text-zinc-400 line-clamp-[9]"
+            >
               {item.overview}
             </p>
             <div className="flex flex-col gap-3">
@@ -154,7 +167,7 @@ const GridCard: React.FC<listProps> = ({ movie }) => {
                   src="/src/assets/User.svg"
                   alt="유저 이미지"
                 />
-                <span className="text-lg" role="text">
+                <span className="text-lg" role="text" aria-label="투표수">
                   {item.vote_count.toLocaleString()}
                 </span>
               </p>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { resetUser } from '../../redux/slice/userSlice'
 
-const Logout:React.FC = () => {
+const Logout: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -18,7 +18,7 @@ const Logout:React.FC = () => {
   return (
     <div>
       <button
-        role="button"
+        role="submit"
         onClick={gotoLogout}
         aria-label="로그아웃 하기"
         className="cursor-pointer w-96 h-10 bg-primary-100 "

@@ -8,7 +8,7 @@ type trailerCardProps = {
 
 const TrailerCard: React.FC<trailerCardProps> = ({ trailer }) => {
   return (
-    <div>
+    <>
       {trailer &&
         trailer.map(item => (
           <YouTube
@@ -29,7 +29,7 @@ const TrailerCard: React.FC<trailerCardProps> = ({ trailer }) => {
             }}
           />
         ))}
-    </div>
+    </>
   )
 }
 

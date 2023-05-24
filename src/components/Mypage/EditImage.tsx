@@ -60,14 +60,15 @@ const EditImage: React.FC = () => {
           {user?.photoURL && (
             <img
               src={photo}
-              alt="Avatar"
+              alt="프로필 사진"
               className="rounded-full w-full h-full object-contain opacity-70"
             />
           )}
           <img
+            aria-hidden
             src="/src/assets/Camera.svg"
             width={30}
-            alt=""
+            alt="카메라 아이콘"
             className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer"
           />
         </label>

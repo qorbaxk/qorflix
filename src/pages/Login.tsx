@@ -87,7 +87,7 @@ const Login: React.FC = () => {
             onChange={e => onChange(e)}
           />
           <button
-            type="submit"
+            role="submit"
             className={`w-96 h-14 ${
               email && password ? 'bg-primary-100 ' : 'bg-zinc-400'
             }`}
@@ -98,17 +98,30 @@ const Login: React.FC = () => {
         </fieldset>
       </form>
       <div className="flex flex-row gap-4">
-        <button onClick={onSocialLogin} name="google" className="p-2">
-          <img width={30} src="/src/assets/Google.svg" />
+        <button
+          role="submit"
+          aria-label="구글 소셜 로그인 하기"
+          onClick={onSocialLogin}
+          name="google"
+          className="p-2"
+        >
+          <img width={30} src="/src/assets/Google.svg" alt="구글 아이콘" />
         </button>
-        <button onClick={onSocialLogin} name="github" className="p-2">
-          <img width={30} src="/src/assets/Github.svg" />
+        <button
+          role="submit"
+          aria-label="깃허브 소셜 로그인 하기"
+          onClick={onSocialLogin}
+          name="github"
+          className="p-2"
+        >
+          <img width={30} src="/src/assets/Github.svg" alt="깃허브 아이콘" />
         </button>
       </div>
       <div className="w-96 flex flex-row justify-between text-xs text-zinc-200">
-        <p>아직 계정이 없으세요?</p>
+        <p role="text">아직 계정이 없으세요?</p>
         <Link
           to="/register"
+          role="button"
           aria-label="회원가입 하러 가기"
           className="underline underline-offset-4"
         >

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import { ChangeEvent } from 'react'
 
 interface InputProps {
   id: string
@@ -20,7 +20,7 @@ const RegisterInput = ({
   onChange,
 }: InputProps) => {
   return (
-    <div className='w-96 h-12 text-center'>
+    <div className="w-96 h-12 text-center">
       <label htmlFor={id} />
       <input
         id={id}

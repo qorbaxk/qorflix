@@ -1,14 +1,14 @@
 import './App.css'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../../firebase-config'
 import {
   getLoggedIn,
   getLoggedOut,
   getUserGroup,
 } from '../../redux/slice/userSlice'
-import { auth } from '../../firebase-config'
-import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 
 import Home from '../../pages/Home'
