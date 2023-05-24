@@ -38,7 +38,7 @@ const Login: React.FC = () => {
       } else if (name === 'github') {
         provider = new GithubAuthProvider()
       }
-      const data = await signInWithPopup(
+      await signInWithPopup(
         auth,
         provider as GoogleAuthProvider | GithubAuthProvider,
       )
@@ -51,9 +51,8 @@ const Login: React.FC = () => {
   const onSubmit = async (e: any): Promise<void> => {
     e.preventDefault()
     try {
-      let data
       const auth = getAuth()
-      data = await signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password)
       navigate('/')
     } catch (error) {
       console.error(error)
