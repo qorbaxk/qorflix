@@ -1,11 +1,29 @@
 import React, { useState } from 'react'
 import EditImage from './EditImage'
 import { RootState } from '../../redux/store'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAuth, updateProfile } from 'firebase/auth'
+import { getUserGroup } from '../../redux/slice/userSlice'
 
 const EditProfile: React.FC = () => {
+  const auth = getAuth()
+  const dispatch = useDispatch()
   const users = useSelector((userState: RootState) => userState.lg.userGroup)
   const [text, setText] = useState(users.name)
+
+  const goEdit = async () => {
+    if (auth.currentUser && auth.currentUser.displayName !== text) {
+      await updateProfile(auth.currentUser, {
+        displayName: text,
+      })
+      dispatch(
+        getUserGroup({
+          ...users,
+          name: text,
+        }),
+      )
+    }
+  }
 
   return (
     <div className="flex flex-col items-center gap-4 w-96">
@@ -22,7 +40,10 @@ const EditProfile: React.FC = () => {
           value={text}
         />
       </div>
-      <button className="cursor-pointer w-full h-14 bg-neutral-800 hover:bg-primary-100">
+      <button
+        className="cursor-pointer w-full h-14 bg-neutral-800 hover:bg-primary-100"
+        onClick={goEdit}
+      >
         수정하기
       </button>
     </div>
